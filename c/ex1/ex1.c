@@ -26,14 +26,13 @@ int main(int nbArg, char *tArg[]) {
 		printf("Veuillez saisir votre pr\x82nom : ");
 		gets(prenom);
 		printf("Bonjour %s !\n", prenom);
+		nbArg = 2; // Simulation du passage d'un argument
 	}
-	if (nbArg >= 3) {
-		// au minimum de personnes
-		printf("J'ai dit bonjour %c %i personnes\n", 133, nbArg-1);
-	} else {
-		// j'ai une personne
-		printf("J'ai dit bonjour %c 1 personne\n", 133);
-	}
+	printf("J'ai dit bonjour %c %i personne%s\n",
+		   133, 
+		   nbArg-1,
+		   nbArg >= 3 ? "s" : "");
+	
 	return 0;
 }
 
