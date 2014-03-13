@@ -1,6 +1,8 @@
 #include <stdio.h>
 
 float verificationSaisie(char *chaine) {
+	// Définition des variables locales
+	
 	// algo de la fonction verificationSaisie
 
 }
