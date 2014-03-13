@@ -27,7 +27,13 @@ int main(int nbArg, char *tArg[]) {
 		gets(prenom);
 		printf("Bonjour %s !\n", prenom);
 	}
-	
+	if (nbArg >= 3) {
+		// au minimum de personnes
+		printf("J'ai dit bonjour %c %i personnes\n", 133, nbArg-1);
+	} else {
+		// j'ai une personne
+		printf("J'ai dit bonjour %c 1 personne\n", 133);
+	}
 	return 0;
 }
 
