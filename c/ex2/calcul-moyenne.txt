@@ -1,0 +1,79 @@
+Définir une variable <saisie> de type chaîne de caractères initialisée avec ""
+Définir une variable <moy> de type nombre décimal
+Définir une variable <som> de type nombre décimal initialisée avec 0
+Définir une variable <nbn> de type entier initialisée avec 0
+Définir une variable <min> de type nombre décimal
+Définir une variable <max> de type nombre décimal
+Définir une variable <ety> de type nombre décimal
+Définir une variable <note> de type nombre décimal
+Définir une variable <carsom> de type nombre décimal initialisée avec 0
+
+Fonction verificationSaisie( <chaîne> de type chaîne de caractères ) 
+	Définir une variable <lngChaîne> de type entier
+	Définir une variable <i> de type entier initialisée à 0
+	Définir une variable <c> de type caractère
+	
+	lngChaîne <- longueur(chaîne) // Nombre de caractères de la chaîne passée en paramètre
+	
+	Pour i variant 0 de lngChaîne-1
+		c <- ième caractère(chaîne)
+		Si (c < '0' ou c > '9') et (c différent '.') et (c différent ',')
+			Renvoyer -1
+		Fin de Si
+	Fin Pour
+	Renvoyer conversion(chaîne)
+Fin Fonction	
+
+// Deuxième version (avec un Tant que)
+Fonction verificationSaisie( <chaîne> de type chaîne de caractères ) 
+	Définir une variable <lngChaîne> de type entier
+	Définir une variable <i> de type entier 
+	Définir une variable <c> de type caractère
+	
+	lngChaîne <- longueur(chaîne) // Nombre de caractères de la chaîne passée en paramètre
+	i <- 0
+	Tant que i < lngChaîne
+		c <- ième caractère(chaîne)
+		Si (c < '0' ou c > '9') et (c différent '.') et (c différent ',')
+			Renvoyer -1
+		Sinon
+			i <- i+1
+		Fin de Si
+	Fin de Tant que
+	Renvoyer conversion(chaîne)
+Fin Fonction	
+
+Afficher "Veuillez saisir les notes, finir par le mot 'fin'"
+Tant Que <saisie> != "fin"
+	<saisie> <- Saisie au clavier
+	<note> <- verificationSaisie(<saisie>)
+	Si <note> >= 0
+		Si <nbn> == 0 
+			<min> <- <note>
+			<max> <- <note>
+		Fin de Si
+		<som> <- <som> + <note>
+		<carsom> <- <carsom> + (<note>*<note>)
+		<nbn> <- <nbn> + 1
+		Si <note> < <min> 
+			<min> <- <note>
+		Fin de Si	
+		Si <note> > <max> 
+			<max> <- <note>
+		Fin de Si
+	Sinon
+		Si <saisie> != "fin"
+			Afficher "Veuillez saisir une note valide"
+		Fin de Si	
+	Fin de Si
+Fin de Tant Que
+Si <nbn> != 0
+	<moy> <- <som> / <nbn> // Calcul de la moyenne
+	<ety> <- sqrt( ( <carsom> / nbn ) - ( (<som>*<som>) /  (<nbn>*<nbn>) ) ) // Calcul de l'écart-type
+	Afficher " La moyenne est : <moy>
+			   La note la plus basse : <min>
+			   La note la pus haute : <max>
+			   l'écart-type :<ety>"
+Sinon
+	Afficher "Vous n'avez pas saisi de notes..."
+Fin de Si
