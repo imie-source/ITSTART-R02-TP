@@ -69,35 +69,47 @@ float *pTmp;
 
 // L'algorithme
 
-// Allocation dynamique d'un float en mémoire ! penser à libérer !
-pNotes = malloc(1*sizeof(float)); 
-
 printf("Veuillez saisir les notes, finir par le mot 'fin'\n");
 while( strcmp(saisie, "fin") ) {
 	gets(saisie);
 	note = verificationSaisie(saisie);
 	if (note >= 0) {
 		// Je stocke la note dans pNotes à l'indice nbn
-		pNotes[nbn] = note;
-		// J'alloue un float supplémentaire dans le "tableau"
-		pTmp = realloc(pNotes, (nbn+2)*(sizeof(float)));
-		// Si l'allocation s'est bien passée
-		if (pTmp != NULL) {
-			// On fait pointer pNotes vers la nouvelle plage de mémoire
-			pNotes = pTmp;
-		} else {
-			// On indique qu'il n'y plus de mémoire
-			printf("Plus de m%cmoire disponible...", 130);
-			// et on termine la boucle de saisie
-			break;
-		}	
 		if (nbn == 0) {
+			/* On n'a pas encore alloué de mémoire, on utilise
+			   donc malloc
+			  */
+			pNotes = malloc(1*sizeof(float)); 
+			if (pNotes == NULL) {
+				// On indique qu'il n'y plus de mémoire
+				printf("Plus de m%cmoire disponible...", 130);
+				// et on termine le programme avec un code erreur
+				return -1;
+			}
+		} else {
+			// J'alloue un float supplémentaire dans le "tableau"
+			pTmp = realloc(pNotes, (nbn+1)*(sizeof(float)));
+			// Si l'allocation s'est bien passée
+			if (pTmp != NULL) {
+				// On fait pointer pNotes vers la nouvelle plage de mémoire
+				pNotes = pTmp;
+			} else {
+				// On indique qu'il n'y plus de mémoire
+				printf("Plus de m%cmoire disponible...", 130);
+				// et on termine la boucle de saisie
+				break;
+			}	
+		}
+		// Maintenant, j'ai la mémoire disponible pour stocker la note
+		pNotes[nbn] = note;
+		nbn++; 
+		
+		if (nbn == 1) {
 			min = note;
 			max = note;
 		}
 		som += note;
 		carsom += (note*note);
-		nbn++;
 		if (note < min) {
 			min = note;
 		}
