@@ -26,6 +26,25 @@ float verificationSaisie(char *chaine) {
 	return atof(chaine);
 }
 
+/**
+ * Affiche l'ensemble des notes, une par ligne
+ *
+ * @param int nbNotes Nombre de notes saisies
+ * @param array tab Tableau des notes
+ */
+void afficherNotes(int nbNotes, float tab[]) {
+	int i;
+	printf("Voici les notes saisies :\n");
+	for(i = 0; i < nbNotes; i++) {
+		printf("\tnote %d : %2.2f\n", (i+1), tab[i]); 
+	}
+}
+
+/**
+ * Première fonction appelée par le programme
+ *
+ * @return int Code de fin
+ */
 int main() {
 
 // Définition des variables globales
@@ -38,6 +57,10 @@ float max;
 float ety;
 float note;
 float carsom = 0;
+/**
+ * @var array tabNotes Tableau des notes
+ */
+float tabNotes[100];
 
 // L'algorithme
 
@@ -46,6 +69,8 @@ while( strcmp(saisie, "fin") ) {
 	gets(saisie);
 	note = verificationSaisie(saisie);
 	if (note >= 0) {
+		// Je stocke la note dans tabNotes à l'indice nbn
+		tabNotes[nbn] = note;
 		if (nbn == 0) {
 			min = note;
 			max = note;
@@ -66,6 +91,7 @@ while( strcmp(saisie, "fin") ) {
 	}
 }
 if (nbn != 0) {
+	afficherNotes(nbn, tabNotes);
 	moy = som / nbn; // Calcul de la moyenne
 	ety = sqrt( ( carsom / nbn ) - ( ( som * som ) /  ( nbn * nbn ) ) ); // Calcul de l'écart-type
 	printf("La moyenne est : %f\n", moy); 
