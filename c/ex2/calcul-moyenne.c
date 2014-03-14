@@ -3,11 +3,30 @@
 #include <stdlib.h>
 #include <math.h>
 
+/**
+ * Vérifie si la chaîne passée en paramètre est une note ou pas
+ *
+ * Parcourt les caractères de la chaîne et vérifie un par un
+ * si le caractères est un chiffre, un point ou une virgule
+ *
+ * @param char* chaine Chaîne à vérifier
+ * @return float >= 0 si la chaîne est bien une note, -1 sinon
+ */
 float verificationSaisie(char *chaine) {
 	// Définition des variables locales
+	/**
+	 * @var int lngChaine Longueur de la chaîne de caractères
+	 */
 	int lngChaine;
+	/**
+	 * @var int i index de parcours de la chaîne
+	 */
 	int i;
+	/**
+	 * @var char c caractère courant
+	 */
 	char c;
+	
 	// algo de la fonction verificationSaisie
 	lngChaine = strlen(chaine);
 	for(i = 0; i < lngChaine; i++) {
@@ -33,6 +52,9 @@ float verificationSaisie(char *chaine) {
  * @param array tab Tableau des notes
  */
 void afficherNotes(int nbNotes, float tab[]) {
+	/**
+	 * @var int i index de parcours des notes
+	 */
 	int i;
 	printf("Voici les notes saisies :\n");
 	for(i = 0; i < nbNotes; i++) {
@@ -43,25 +65,55 @@ void afficherNotes(int nbNotes, float tab[]) {
 /**
  * Première fonction appelée par le programme
  *
+ * Effectue la saisie des notes, puis le calcul de la moyenne,
+ * du min, du max et de l'écart-type de l'ensemble des notes
+ *
+ * @author Serge COUDÉ
  * @return int Code de fin
  */
 int main() {
 
 // Définition des variables globales
+/**
+ * @var array saisie Tableau de caractères pour la saisie de note
+ */ 
 char saisie[6];
+/**
+ * @var float moy Moyenne des notes
+ */
 float moy;
+/**
+ * @var float som Somme des notes
+ */
 float som = 0;
+/**
+ * @var int nbn Nombre des notes
+ */
 int nbn = 0;
+/**
+ * @var float min Note la plus basse
+ */
 float min;
+/**
+ * @var float max Note la plus haute
+ */
 float max;
+/**
+ * @var float ety Ecart-type de l'ensemble des notes
+ */
 float ety;
+/**
+ * @var float note Note 
+ */
 float note;
+/**
+ * @var float carsom Somme des carrés des notes
+ */
 float carsom = 0;
 /**
  * @var pointer pNotes Pointeur vers les notes allouées en mémoire
  */
 float *pNotes;
-
 /**
  * @var pointer pTmp Pointeur "temporaire" pour la réallocation de mémoire
  */
