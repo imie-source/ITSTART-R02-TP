@@ -58,19 +58,39 @@ float ety;
 float note;
 float carsom = 0;
 /**
- * @var array tabNotes Tableau des notes
+ * @var pointer pNotes Pointeur vers les notes allouées en mémoire
  */
-float tabNotes[100];
+float *pNotes;
+
+/**
+ * @var pointer pTmp Pointeur "temporaire" pour la réallocation de mémoire
+ */
+float *pTmp;
 
 // L'algorithme
+
+// Allocation dynamique d'un float en mémoire ! penser à libérer !
+pNotes = malloc(1*sizeof(float)); 
 
 printf("Veuillez saisir les notes, finir par le mot 'fin'\n");
 while( strcmp(saisie, "fin") ) {
 	gets(saisie);
 	note = verificationSaisie(saisie);
 	if (note >= 0) {
-		// Je stocke la note dans tabNotes à l'indice nbn
-		tabNotes[nbn] = note;
+		// Je stocke la note dans pNotes à l'indice nbn
+		pNotes[nbn] = note;
+		// J'alloue un float supplémentaire dans le "tableau"
+		pTmp = realloc(pNotes, (nbn+2)*(sizeof(float)));
+		// Si l'allocation s'est bien passée
+		if (pTmp != NULL) {
+			// On fait pointer pNotes vers la nouvelle plage de mémoire
+			pNotes = pTmp;
+		} else {
+			// On indique qu'il n'y plus de mémoire
+			printf("Plus de m%cmoire disponible...", 130);
+			// et on termine la boucle de saisie
+			break;
+		}	
 		if (nbn == 0) {
 			min = note;
 			max = note;
@@ -91,7 +111,7 @@ while( strcmp(saisie, "fin") ) {
 	}
 }
 if (nbn != 0) {
-	afficherNotes(nbn, tabNotes);
+	afficherNotes(nbn, pNotes);
 	moy = som / nbn; // Calcul de la moyenne
 	ety = sqrt( ( carsom / nbn ) - ( ( som * som ) /  ( nbn * nbn ) ) ); // Calcul de l'écart-type
 	printf("La moyenne est : %f\n", moy); 
@@ -101,5 +121,7 @@ if (nbn != 0) {
 } else {
 	printf("Vous n'avez pas saisi de notes...\n");
 }
+// Libération de la mémoire allouée dynamiquement
+free(pNotes);
 return 0;
 }
