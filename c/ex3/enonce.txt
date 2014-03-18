@@ -1,0 +1,10 @@
+Exercice 3 : manipulation des pointeurs
+
+- Afficher "longueur de la chaîne générée : "
+- Lire au clavier une valeur entière et l'affecter dans une variable
+lng
+- Allouer lng+1 caractères en mémoire dont l'adresse sera pointée 
+par un pointeur de caractère
+- Copier dans cette cellule une ou plusieurs parties de 
+"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+- Afficher la chaîne générée
