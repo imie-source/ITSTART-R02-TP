@@ -124,6 +124,16 @@ float *pTmp;
  */
 char prenom[20];
 
+/**
+ * @var char** pPrenoms Tableau des prénoms
+ */
+char **pPrenoms;
+
+/**
+ * @var char ** pTmpPrenoms Pointeur "temporaire" pour la réallocation de mémoire
+ */
+char **pTmpPrenoms;
+
 // L'algorithme
 
 printf("Veuillez saisir les prenoms et les notes\n\t<prenom> <note>\nfinir par le mot 'fin fin'\n");
@@ -136,8 +146,9 @@ while( strcmp(prenom, "fin") ) {
 			/* On n'a pas encore alloué de mémoire, on utilise
 			   donc malloc
 			  */
-			pNotes = malloc(1*sizeof(float)); 
-			if (pNotes == NULL) {
+			pNotes = malloc(1*sizeof(float));
+			pPrenoms = malloc(20*sizeof(char));
+			if (NULL == pNotes || NULL == pPrenoms) {
 				// On indique qu'il n'y plus de mémoire
 				printf("Plus de m%cmoire disponible...", 130);
 				// et on termine le programme avec un code erreur
@@ -146,10 +157,12 @@ while( strcmp(prenom, "fin") ) {
 		} else {
 			// J'alloue un float supplémentaire dans le "tableau"
 			pTmp = realloc(pNotes, (nbn+1)*(sizeof(float)));
+			pTmpPrenoms = realloc(pPrenoms, (nbn+1)*(20*sizeof(char)));
 			// Si l'allocation s'est bien passée
-			if (pTmp != NULL) {
+			if (NULL != pTmp && NULL != pTmpPrenoms) {
 				// On fait pointer pNotes vers la nouvelle plage de mémoire
 				pNotes = pTmp;
+				pPrenoms = pTmpPrenoms;
 			} else {
 				// On indique qu'il n'y plus de mémoire
 				printf("Plus de m%cmoire disponible...", 130);
@@ -159,6 +172,7 @@ while( strcmp(prenom, "fin") ) {
 		}
 		// Maintenant, j'ai la mémoire disponible pour stocker la note
 		pNotes[nbn] = note;
+		strncpy(*(pPrenoms+(nbn*20*sizeof(char))), prenom, 10);
 		nbn++; 
 		
 		if (nbn == 1) {
@@ -192,5 +206,6 @@ if (nbn != 0) {
 }
 // Libération de la mémoire allouée dynamiquement
 free(pNotes);
+free(pPrenoms);
 return 0;
 }
