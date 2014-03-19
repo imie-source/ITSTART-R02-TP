@@ -49,16 +49,17 @@ float verificationSaisie(char *chaine) {
  * Affiche l'ensemble des notes, une par ligne
  *
  * @param int nbNotes Nombre de notes saisies
- * @param array tab Tableau des notes
+ * @param array tabNotes Tableau des notes
+ * @param array tPrenoms Tableau des prénoms
  */
-void afficherNotes(int nbNotes, float tab[]) {
+void afficherNotes(int nbNotes, float tabNotes[], char *tPrenoms[]) {
 	/**
 	 * @var int i index de parcours des notes
 	 */
 	int i;
 	printf("Voici les notes saisies :\n");
 	for(i = 0; i < nbNotes; i++) {
-		printf("\tnote %d : %2.2f\n", (i+1), tab[i]); 
+		printf("\tnote %d (%s): %2.2f\n", (i+1), tPrenoms[i],tabNotes[i]); 
 	}
 }
 
@@ -125,6 +126,16 @@ float *pTmp;
 char prenom[20];
 
 /**
+ * @var array prenomMin Chaîne de caractères qui contiendra le prénom du dernier élève ayant la moins bonne note
+ */
+char prenomMin[20];
+
+/**
+ * @var array prenomMax Chaîne de caractères qui contiendra le prénom du dernier élève ayant la meilleure note
+ */
+char prenomMax[20];
+
+/**
  * @var char** pPrenoms Tableau des prénoms
  */
 char **pPrenoms;
@@ -147,7 +158,7 @@ while( strcmp(prenom, "fin") ) {
 			   donc malloc
 			  */
 			pNotes = malloc(1*sizeof(float));
-			pPrenoms = malloc(20*sizeof(char));
+			pPrenoms = malloc(1*sizeof(char*));
 			if (NULL == pNotes || NULL == pPrenoms) {
 				// On indique qu'il n'y plus de mémoire
 				printf("Plus de m%cmoire disponible...", 130);
@@ -156,8 +167,8 @@ while( strcmp(prenom, "fin") ) {
 			}
 		} else {
 			// J'alloue un float supplémentaire dans le "tableau"
-			pTmp = realloc(pNotes, (nbn+1)*(sizeof(float)));
-			pTmpPrenoms = realloc(pPrenoms, (nbn+1)*(20*sizeof(char)));
+			pTmp = realloc(pNotes, (nbn+1)*sizeof(float));
+			pTmpPrenoms = realloc(pPrenoms,(nbn+1)*sizeof(char *));
 			// Si l'allocation s'est bien passée
 			if (NULL != pTmp && NULL != pTmpPrenoms) {
 				// On fait pointer pNotes vers la nouvelle plage de mémoire
@@ -172,20 +183,25 @@ while( strcmp(prenom, "fin") ) {
 		}
 		// Maintenant, j'ai la mémoire disponible pour stocker la note
 		pNotes[nbn] = note;
-		strncpy(*(pPrenoms+(nbn*20*sizeof(char))), prenom, 10);
+		pPrenoms[nbn] = malloc((strlen(prenom)+1)*sizeof(char));
+		strcpy(pPrenoms[nbn], prenom);
 		nbn++; 
 		
 		if (nbn == 1) {
 			min = note;
 			max = note;
+			strcpy(prenomMin, prenom);
+			strcpy(prenomMax, prenom);
 		}
 		som += note;
 		carsom += (note*note);
 		if (note < min) {
 			min = note;
+			strcpy(prenomMin, prenom);
 		}
 		if ( note > max ) {
 			max = note;
+			strcpy(prenomMax, prenom);
 		}
 	} else {
 		if ( strcmp(saisie, "fin") != 0) {
@@ -194,18 +210,21 @@ while( strcmp(prenom, "fin") ) {
 	}
 }
 if (nbn != 0) {
-	afficherNotes(nbn, pNotes);
+	afficherNotes(nbn, pNotes, pPrenoms);
 	moy = som / nbn; // Calcul de la moyenne
 	ety = sqrt( ( carsom / nbn ) - ( ( som * som ) /  ( nbn * nbn ) ) ); // Calcul de l'écart-type
-	printf("La moyenne est : %f\n", moy); 
-	printf("La note la plus basse : %f\n", min);
-	printf("La note la plus haute : %f\n", max);
-	printf("l'%ccart-type : %f\n", 130, ety);
+	printf("La moyenne est : %2.2f\n", moy); 
+	printf("La note la plus basse (%s) : %2.2f\n", prenomMin, min);
+	printf("La note la plus haute (%s) : %2.2f\n", prenomMax, max);
+	printf("l'%ccart-type : %2.2f\n", 130, ety);
 } else {
 	printf("Vous n'avez pas saisi de notes...\n");
 }
 // Libération de la mémoire allouée dynamiquement
 free(pNotes);
+for(nbn--; nbn >= 0; nbn--) {
+	free(pPrenoms[nbn]);
+}
 free(pPrenoms);
 return 0;
 }
