@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "include/affichernotes.h"
+#include "../include/affichernotes.h"
 
 /**
  * Affiche l'ensemble des notes, une par ligne

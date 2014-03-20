@@ -3,9 +3,9 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "include/resultat.h"
-#include "include/affichernotes.h"
-#include "include/verification.h"
+#include "../include/resultat.h"
+#include "../include/affichernotes.h"
+#include "../include/verification.h"
 
 /**
  * Première fonction appelée par le programme

@@ -1,7 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "include/verification.h"
+#include "../include/verification.h"
 
 /**
  * Vérifie si la chaîne passée en paramètre est une note ou pas
