@@ -8,9 +8,12 @@ all: ex8.exe
 
 ex8.o: $(REPSRC)/ex8.c
 	$(GCCC) $(REPSRC)/ex8.c -o $(REPLIB)/ex8.o
+
+quelleoperation.o: $(REPSRC)/quelleoperation.c
+	$(GCCC) $(REPSRC)/quelleoperation.c -o $(REPLIB)/quelleoperation.o
 	
-ex8.exe: ex8.o
-	$(GCCE) $(REPLIB)/ex8.o -o $(REPBUILD)/ex8.exe
+ex8.exe: ex8.o quelleoperation.o
+	$(GCCE) $(REPLIB)/ex8.o $(REPLIB)/quelleoperation.o -o $(REPBUILD)/ex8.exe
 	
 run: ex8.exe
 	$(REPBUILD)/ex8.exe
