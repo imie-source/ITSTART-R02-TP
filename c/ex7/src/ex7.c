@@ -138,13 +138,13 @@ if (nbn != 0) {
 	printf("La note la plus basse (%s) : %2.2f\n", pResultats[iMin].prenomEleve, pResultats[iMin].noteEleve);
 	printf("La note la plus haute (%s) : %2.2f\n", pResultats[iMax].prenomEleve, pResultats[iMax].noteEleve);
 	printf("l'%ccart-type : %2.2f\n", 130, ety);
+	// Libération de la mémoire allouée dynamiquement
+	for(nbn--; nbn >= 0; nbn--) {
+		free(pResultats[nbn].prenomEleve);
+	}
+	free(pResultats);
 } else {
 	printf("Vous n'avez pas saisi de notes...\n");
 }
-// Libération de la mémoire allouée dynamiquement
-for(nbn--; nbn >= 0; nbn--) {
-	free(pResultats[nbn].prenomEleve);
-}
-free(pResultats);
 return 0;
 }
