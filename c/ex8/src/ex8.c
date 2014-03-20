@@ -18,12 +18,15 @@ int main(int nbArgs, char **tabArgs) {
 	char saisie[200] = "";
  
 	while(stricmp(saisie, "fin")) {
-		printf("%s", saisie);
-		printf("\nVeuillez saisir une operation, finir par 'fin'\n");
-		scanf("%s", &saisie);
-		struct info *pInfo = quelleOperation(saisie);
-		printf("operation : %c\n", (*pInfo).operateur);
-		printf("position : %d\n", (*pInfo).position);
+		printf("Veuillez saisir une operation, finir par 'fin'\n");
+		gets(saisie);
+		if (stricmp(saisie, "fin")) {
+			struct info *pInfo = quelleOperation(saisie);
+			printf("operation : %c\n", (*pInfo).operateur);
+			printf("position : %d\n", (*pInfo).position);
+			printf("%s\n", saisie);
+			free(pInfo);
+		}	
 	}
 	 
 	return 0;
