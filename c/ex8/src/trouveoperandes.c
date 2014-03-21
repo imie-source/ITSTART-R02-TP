@@ -12,7 +12,7 @@
  */
 struct operandes *trouveOperandes(char *chaine, struct info *pInfo) {
 	struct operandes *pOperandes = malloc(sizeof(struct operandes));
-	char *pOpeGauche = substring(chaine, 0, (*pInfo).position-1);
+	char *pOpeGauche = substring(chaine, 0, (*pInfo).position);
 	(*pOperandes).gauche = atoi(pOpeGauche);
 	free(pOpeGauche);
 	char *pOpeDroite = substring(chaine, (*pInfo).position+1, strlen(chaine)-(*pInfo).position-1);

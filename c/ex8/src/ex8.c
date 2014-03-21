@@ -4,6 +4,7 @@
 
 #include "../include/quelleoperation.h"
 #include "../include/substring.h"
+#include "../include/operandes.h"
 
 /**
  * Première fonction appelée par le programme
