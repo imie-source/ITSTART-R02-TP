@@ -7,7 +7,7 @@ struct info *quelleOperation(char *chaine) {
 	      chaine[i] != '-' &&
 		  chaine[i] != 'x' &&
 		  chaine[i] != '/' &&
-		  chaine[i] != 'y' &&
+		  chaine[i] != '^' &&
 		  chaine[i] != '!' &&
 		  chaine[i] != '\0') {
 		i++;
