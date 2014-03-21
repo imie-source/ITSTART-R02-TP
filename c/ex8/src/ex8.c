@@ -32,6 +32,7 @@ int main(int nbArgs, char **tabArgs) {
 			} else {
 				printf("resultat : %lf\n", (*pRes).resultat);
 			}
+			free(pRes);
 		}	
 	}
 	 
