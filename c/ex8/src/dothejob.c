@@ -21,12 +21,11 @@ struct resultat * doTheJob(char *saisie) {
 	struct operandes *pOperandes = trouveOperandes(saisie, pInfo);
 	// printf("opeG : %d\n", (*pOperandes).gauche);
 	// printf("opeD : %d\n", (*pOperandes).droite);
-	if ('/' == (*pInfo).operateur) {
-		if (0 == (*pOperandes).droite) {
+	if ('/' == (*pInfo).operateur && 
+		0 == (*pOperandes).droite) {
 			// gestion de la division par zéro
 			(*pResultat).message = "Division par zero";
 			(*pResultat).erreur = 1;
-		}
 	} else {
 		(*pResultat).resultat = calculeOperation((*pInfo).operateur,
 												 (*pOperandes).gauche,
