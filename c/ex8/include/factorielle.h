@@ -8,6 +8,6 @@
  * @param int n Nombre à factorielliser
  * @return unsigned long Factorielle du nombre
  */
-unsigned long long factorielle(int n);
+unsigned long factorielle(int n);
 
 #endif

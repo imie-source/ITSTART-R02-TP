@@ -31,19 +31,18 @@ int main(int nbArgs, char **tabArgs) {
 		gets(saisie);
 		if (stricmp(saisie, "fin")) {
 			struct info *pInfo = quelleOperation(saisie);
-			printf("operation : %c\n", (*pInfo).operateur);
-			printf("position : %d\n", (*pInfo).position);
-			printf("%s\n", saisie);
+			// printf("operation : %c\n", (*pInfo).operateur);
+			// printf("position : %d\n", (*pInfo).position);
+			// printf("%s\n", saisie);
 			struct operandes *pOperandes = trouveOperandes(saisie, pInfo);
-			printf("opeG : %d\n", (*pOperandes).gauche);
-			printf("opeD : %d\n", (*pOperandes).droite);
+			// printf("opeG : %d\n", (*pOperandes).gauche);
+			// printf("opeD : %d\n", (*pOperandes).droite);
 			res = calculeOperation((*pInfo).operateur,
 								   (*pOperandes).gauche,
 								   (*pOperandes).droite);
 			printf("resultat : %lf\n", res);					   
 			free(pInfo);
 			free(pOperandes);
-			
 		}	
 	}
 	 

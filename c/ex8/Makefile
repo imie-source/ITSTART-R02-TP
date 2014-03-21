@@ -34,5 +34,5 @@ run: ex8.exe
 	$(REPBUILD)/ex8.exe
 
 clean:
-	del $(REPBUILD)/ex8.exe
-	del $(REPLIB)/*.o
+	del $(REPBUILD)\ex8.exe
+	del $(REPLIB)\*.o

@@ -7,7 +7,7 @@
  * @param int n Nombre à factorielliser
  * @return unsigned long Factorielle du nombre
  */
-unsigned long long factorielle(int n) {
+unsigned long factorielle(int n) {
 	if (n <= 1) {
 		return 1;
 	}
