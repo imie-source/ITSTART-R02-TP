@@ -12,14 +12,17 @@ ex8.o: $(REPSRC)/ex8.c
 quelleoperation.o: $(REPSRC)/quelleoperation.c
 	$(GCCC) $(REPSRC)/quelleoperation.c -o $(REPLIB)/quelleoperation.o
 
+trouveoperandes.o: $(REPSRC)/trouveoperandes.c
+	$(GCCC) $(REPSRC)/trouveoperandes.c -o $(REPLIB)/trouveoperandes.o
+	
 substring.o: $(REPSRC)/substring.c
 	$(GCCC) $(REPSRC)/substring.c -o $(REPLIB)/substring.o	
 
 strndup.o: $(REPSRC)/strndup.c
 	$(GCCC) $(REPSRC)/strndup.c -o $(REPLIB)/strndup.o		
 	
-ex8.exe: ex8.o quelleoperation.o substring.o strndup.o
-	$(GCCE) $(REPLIB)/ex8.o $(REPLIB)/quelleoperation.o $(REPLIB)/substring.o $(REPLIB)/strndup.o -o $(REPBUILD)/ex8.exe
+ex8.exe: ex8.o quelleoperation.o substring.o strndup.o trouveoperandes.o
+	$(GCCE) $(REPLIB)/ex8.o $(REPLIB)/quelleoperation.o $(REPLIB)/substring.o $(REPLIB)/strndup.o $(REPLIB)/trouveoperandes.o -o $(REPBUILD)/ex8.exe
 	
 run: ex8.exe
 	$(REPBUILD)/ex8.exe

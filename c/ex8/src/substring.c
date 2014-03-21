@@ -11,11 +11,16 @@
  * @return string sous-chaîne de caractères
  */
 char* substring(const char* str, int begin, int len) {
-  if (str == 0 || 
-	  strlen(str) == 0 ||
-	  strlen(str) < begin ||
-	  strlen(str) < (begin+len)) {
-    return 0;
+  // Les conditions "hors-jeu" 
+  if (str == NULL || // la chaîne est nulle
+	  strlen(str) == 0 || // la chaîne est vide
+	  strlen(str) < begin || // le début est plus loin que la fin de chaîne
+	  strlen(str) < (begin+len) // on demande plus de caractères que disponibles
+	  ) {
+	  // Dans ces conditions, on renvoie NULL
+    return NULL;
   }
+  // Sinon on renvoie la portion de la chaîne à partir de
+  // l'indice begin et d'une longueur len
   return strndup(str + begin, len);
 } 

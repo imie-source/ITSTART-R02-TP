@@ -27,13 +27,11 @@ int main(int nbArgs, char **tabArgs) {
 			printf("operation : %c\n", (*pInfo).operateur);
 			printf("position : %d\n", (*pInfo).position);
 			printf("%s\n", saisie);
-			char *pOpe1 = substring(saisie, 0, (*pInfo).position-1);
-			printf("operande1 : %s\n", pOpe1); 
-			int val = atoi(pOpe1);
-			val += 2;
-			printf("val : %d\n", val);
-			free(pOpe1);
+			struct operandes *pOperandes = trouveOperandes(saisie, pInfo);
+			printf("opeG : %d\n", (*pOperandes).gauche);
+			printf("opeD : %d\n", (*pOperandes).droite);
 			free(pInfo);
+			free(pOperandes);
 			
 		}	
 	}
