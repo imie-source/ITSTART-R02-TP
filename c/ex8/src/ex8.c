@@ -1,11 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
-
-#include "../include/quelleoperation.h"
-#include "../include/substring.h"
-#include "../include/trouveoperandes.h"
-#include "../include/calculeoperation.h"
+#include "../include/dothejob.h"
+#include "../include/resultat.h"
 
 /**
  * Première fonction appelée par le programme
@@ -22,27 +18,20 @@ int main(int nbArgs, char **tabArgs) {
 	char saisie[200] = "";
 	
 	/**
-	 * @var double res Résultat de l'opération
+	 * @var \resultat pRes Structure de résultat de l'opération
 	 */
-	double res = 0;
+	struct resultat *pRes;
  
 	while(stricmp(saisie, "fin")) {
 		printf("Veuillez saisir une operation, finir par 'fin'\n");
 		gets(saisie);
 		if (stricmp(saisie, "fin")) {
-			struct info *pInfo = quelleOperation(saisie);
-			// printf("operation : %c\n", (*pInfo).operateur);
-			// printf("position : %d\n", (*pInfo).position);
-			// printf("%s\n", saisie);
-			struct operandes *pOperandes = trouveOperandes(saisie, pInfo);
-			// printf("opeG : %d\n", (*pOperandes).gauche);
-			// printf("opeD : %d\n", (*pOperandes).droite);
-			res = calculeOperation((*pInfo).operateur,
-								   (*pOperandes).gauche,
-								   (*pOperandes).droite);
-			printf("resultat : %lf\n", res);					   
-			free(pInfo);
-			free(pOperandes);
+			pRes = doTheJob(saisie);
+			if ((*pRes).erreur) {
+				printf("!!!ERREUR!!! : %s\n", (*pRes).message);
+			} else {
+				printf("resultat : %lf\n", (*pRes).resultat);
+			}
 		}	
 	}
 	 

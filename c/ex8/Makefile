@@ -27,8 +27,11 @@ calculeoperation.o: $(REPSRC)/calculeoperation.c
 factorielle.o: $(REPSRC)/factorielle.c	
 	$(GCCC) $(REPSRC)/factorielle.c -o $(REPLIB)/factorielle.o		
 
-ex8.exe: ex8.o quelleoperation.o substring.o strndup.o trouveoperandes.o calculeoperation.o factorielle.o
-	$(GCCE) $(REPLIB)/ex8.o $(REPLIB)/quelleoperation.o $(REPLIB)/substring.o $(REPLIB)/strndup.o $(REPLIB)/calculeoperation.o $(REPLIB)/trouveoperandes.o $(REPLIB)/factorielle.o -o $(REPBUILD)/ex8.exe
+dothejob.o: $(REPSRC)/dothejob.c
+	$(GCCC) $(REPSRC)/dothejob.c -o $(REPLIB)/dothejob.o			
+
+ex8.exe: ex8.o quelleoperation.o substring.o strndup.o trouveoperandes.o calculeoperation.o factorielle.o dothejob.o
+	$(GCCE) $(REPLIB)/ex8.o $(REPLIB)/quelleoperation.o $(REPLIB)/substring.o $(REPLIB)/strndup.o $(REPLIB)/calculeoperation.o $(REPLIB)/trouveoperandes.o $(REPLIB)/factorielle.o $(REPLIB)/dothejob.o -o $(REPBUILD)/ex8.exe
 	
 run: ex8.exe
 	$(REPBUILD)/ex8.exe
