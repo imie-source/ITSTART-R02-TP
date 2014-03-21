@@ -5,6 +5,7 @@
 #include "../include/quelleoperation.h"
 #include "../include/substring.h"
 #include "../include/trouveoperandes.h"
+#include "../include/calculeoperation.h"
 
 /**
  * Première fonction appelée par le programme
@@ -19,6 +20,11 @@ int main(int nbArgs, char **tabArgs) {
 	 * @var array saisie Tableau de caractères contenant la saisie de l'utilisateur
 	 */
 	char saisie[200] = "";
+	
+	/**
+	 * @var double res Résultat de l'opération
+	 */
+	double res = 0;
  
 	while(stricmp(saisie, "fin")) {
 		printf("Veuillez saisir une operation, finir par 'fin'\n");
@@ -31,6 +37,10 @@ int main(int nbArgs, char **tabArgs) {
 			struct operandes *pOperandes = trouveOperandes(saisie, pInfo);
 			printf("opeG : %d\n", (*pOperandes).gauche);
 			printf("opeD : %d\n", (*pOperandes).droite);
+			res = calculeOperation((*pInfo).operateur,
+								   (*pOperandes).gauche,
+								   (*pOperandes).droite);
+			printf("resultat : %lf\n", res);					   
 			free(pInfo);
 			free(pOperandes);
 			

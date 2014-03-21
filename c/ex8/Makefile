@@ -20,9 +20,15 @@ substring.o: $(REPSRC)/substring.c
 
 strndup.o: $(REPSRC)/strndup.c
 	$(GCCC) $(REPSRC)/strndup.c -o $(REPLIB)/strndup.o		
-	
-ex8.exe: ex8.o quelleoperation.o substring.o strndup.o trouveoperandes.o
-	$(GCCE) $(REPLIB)/ex8.o $(REPLIB)/quelleoperation.o $(REPLIB)/substring.o $(REPLIB)/strndup.o $(REPLIB)/trouveoperandes.o -o $(REPBUILD)/ex8.exe
+
+calculeoperation.o: $(REPSRC)/calculeoperation.c
+	$(GCCC) $(REPSRC)/calculeoperation.c -o $(REPLIB)/calculeoperation.o		
+
+factorielle.o: $(REPSRC)/factorielle.c	
+	$(GCCC) $(REPSRC)/factorielle.c -o $(REPLIB)/factorielle.o		
+
+ex8.exe: ex8.o quelleoperation.o substring.o strndup.o trouveoperandes.o calculeoperation.o factorielle.o
+	$(GCCE) $(REPLIB)/ex8.o $(REPLIB)/quelleoperation.o $(REPLIB)/substring.o $(REPLIB)/strndup.o $(REPLIB)/calculeoperation.o $(REPLIB)/trouveoperandes.o $(REPLIB)/factorielle.o -o $(REPBUILD)/ex8.exe
 	
 run: ex8.exe
 	$(REPBUILD)/ex8.exe
