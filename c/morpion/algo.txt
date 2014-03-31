@@ -1,0 +1,211 @@
+Définir la variable prenom1 de type tableau de 20 caractères 
+Définir la variable prenom2 de type tableau de 20 caractères 
+Définir la variable nbParties de type entier
+Définir la variable np de type entier
+Définir la variable total1 de type entier initialisée avec 0
+Définir la variable total2 de type entier initialisée avec 0
+Définir la variable plateau de type tableau de 3 tableaux de 3 caractères
+Définir la variable s1 de type caractère initialisée avec 'X'
+Définir la variable s2 de type caractère initialisée avec 'O'
+Définir la variable resultat de type entier
+
+Définir une fonction initialiserPlateau(p de type tableau de 3 tableaux de 3 caractères)
+	Définir une variable l de type entier
+	Définir une variable c de type entier
+	Pour l variant de 0 à 2
+		Pour c variant de 0 à 2
+			p[l][c] <- ' '
+		Fin de Pour c
+	Fin de Pour l
+Fin de la fonction initialiserPlateau
+
+Définir une fonction afficherPlateau(p de type tableau de 3 tableaux de 3 caractères)
+	Définir une variable l de type entier
+	Définir une variable c de type entier
+	Afficher "  1 2 3" saut de ligne
+	Pour l variant de 0 à 2
+		Afficher " -------" saut de ligne
+		Afficher (l+1) "|"
+		Pour c variant de 0 à 2
+			Afficher p[l][c]
+			Afficher '|'
+		Fin de Pour c
+		Afficher saut de ligne
+	}
+	Afficher " -------" saut de ligne
+Fin de la fonction afficherPlateau
+
+Définir une fonction detecteAlignementHV(p de type tableau de 3 tableaux de 3 caractères, pos de type entier, o de type entier, c1 de type caractère, c2 de type caractère)
+	Définir une variable i de type entier
+	Définir une variable j1 de type entier initialisée avec 0
+	Définir une variable j2 de type entier initialisée avec 0
+	Si o égal 1 // vertical
+		Pour i variant de 0 à 2
+			Si p[i][pos] égal à c1
+				j1 = j1 + 1
+			Sinon
+				Si p[i][pos] égal à c2
+					j2 = j2 + 1
+				Fin de Si
+			Fin de Si
+		Fin de Pour
+	Sinon // horizontal
+	Pour i variant de 0 à 2
+			Si p[pos][i] égal à c1
+				j1 = j1 + 1
+			Sinon
+				Si p[pos][i] égal à c2
+					j2 = j2 + 1
+				Fin de Si
+			Fin de Si
+		Fin de Pour	
+	Fin de Si
+	Si j1 égal à 3
+		Renvoyer 1
+	Fin de Si
+	Si j2 égal à 3
+		Renvoyer 2
+	Fin de Si
+	Renvoyer 0
+Fin de la fonction detecteAlignementHV
+
+Définir une fonction detecteAlignementD(p de type tableau de 3 tableaux de 3 caractères, c1 de type caractère, c2 de type caractère)
+	Si (p[0][0] égal à p[1][1] et p[1][1] égal à p[2][2]) ou
+	   (p[0][2] égal à p[1][1] et p[1][1] égal à p[2][0])
+		Si p[1][1] égal à c1
+			Renvoyer 1
+		Sinon 
+			Si p[1][1] égal à c2
+				Renvoyer 2
+			Fin de Si	
+		Fin de Si
+	Fin de Si
+	Renvoyer 0
+Fin de la fonction detecteAlignementDGD
+
+Définir une fonction detecteAlignement(p de type tableau de 3 tableaux de 3 caractères, c1 de type caractère, c2 de type caractère)
+	Définir une variable j de type entier initialisée avec 0
+	Définir une variable i de type entier 
+	Pour i variant de 0 à 2
+		j = detecteAlignementHV(p, i, 1, c1, c2)
+		Si j différent de 0
+			Renvoyer j
+		Fin de Si
+		j = detecteAlignementHV(p, i, 0, c1, c2)
+		Si j différent de 0
+			Renvoyer j
+		Fin de Si
+		Renvoyer detecteAlignementD(p, c1, c2)
+Fin de la fonction detecteAlignement	
+	
+Définir une fonction afficherTotaux(p1 de type chaîne de caractères, p2 de type chaîne de caractères, t1 de type entier, t2 de type entier)
+	Afficher "totaux -> " p1 ":" t1 "  et " p2 " :" t2 saut de ligne
+Fin de la fonction afficherTotaux
+	
+Définir une fonction afficherResultatsPartiels(n de type entier, p1 de chaîne de 20 caractères, p2 de type chaîne de caractères, g de type entier, t1 de type entier, t2 de type entier)
+	Si g égal à 1
+		Afficher "Partie " n " -> le gagnant est " p1 saut de ligne
+	Sinon 
+		Si g égal à 2
+			Afficher "Partie " n " -> le gagnant est " p2 saut de ligne
+		Sinon
+			Afficher "Partie " n " -> partie nulle" saut de ligne
+		Fin de Si
+	Fin de si
+	afficherTotaux(p1, p2, t1, t2)
+Fin de la fonction afficherResultatsPartiels
+
+Définir une fonction afficherResultatsFinaux(p1 de type chaîne de caractères, p2 de type chaîne de caractères, t1 de type entier, t2 de type entier)
+	afficherTotaux(p1, p2, t1, t2)
+	Si t1 supérieur à t2
+		Afficher "Le gagnant est " p1 " !" saut de ligne
+	Sinon 
+		Si t2 supérieur à t1
+			Afficher "Le gagnant est " p2 " !" saut de ligne
+		Sinon
+			Afficher "Matche nul !" saut de ligne
+		Fin de Si
+	Fin de si
+Fin de la fonction afficherResultatsFinaux
+
+Définir une fonction coupNonAutorise(p de type tableau de 3 tableaux de 3 caractères, l de type entier, c de type entier)
+	Renvoyer p[l-1][c-1] différent de ' ' ou 
+			 l > 3 ou
+			 c > 3
+Fin de la fonction coupAutorise
+
+Définir une fonction jouerPartie(p de type tableau de 3 tableaux de 3 caractères, n de type entier, p1 de type chaîne de caractères, p2 de type chaîne de caractères, c1 de type caractère, c2 de type caractère)
+	Définir une variable nbCoups de type entier initialisée avec 0
+	Définir une variable aligne de type entier initialisée avec 0
+	Définir une variable j de type entier initialisée avec 1
+	Définir une variable saisie de type tableau de 3 caractères
+	Définir une variable li de type entier
+	Définir une variable lc de type entier
+	Définir une variable coupIncorrect de type entier
+	initialiserPlateau(p)
+	afficherPlateau(p)
+	Tant que (nbCoups inférieur à 9 && aligne égal à 0) 
+		coupIncorrect <- 1
+		Tant Que coupIncorrect != 0
+			Si j égal à 1
+				Afficher p1
+			Sinon 
+				Afficher p2
+			Fin de Si
+			Afficher ", à vous de jouer (LC, ex 32) :"
+			saisie <- saisie au clavier 
+			li <- conversion du premier caractère de saisie en entier
+			ci <- conversion du second caractère de saisie en entier
+			coupIncorrect <- coupNonAutorise(p, li, ci)
+		Fin de Tant Que	
+		Si j égal à 1
+			p[li-1][ci-1] <- c1
+		Sinon 
+			p[li-1][ci-1] <- c2
+		Fin de Si
+		aligne <- detecteAlignement(p, c1, c2)
+		afficherPlateau(p)
+		nbCoups <- nbCoups + 1
+		j <- j+1
+		Si j égal à 3
+			j <- 1
+		Fin de So		
+	Fin de Tant Que
+	Renvoyer aligne
+Fin de la fonction jouerPartie
+
+// Début de l'algorithme principal
+Si nombre d'arguments supérieur ou égal à 2
+	prenom1 <- 1er argument
+	prenom2 <- 2ème argument
+	Si nombre d'arguments égal à 3
+		nbParties <- conversion du 3ème argument en entier
+	Fin de Si
+Fin de Si
+Si nombre d'arguments inférieur à 2	
+	Afficher "Saisir le prénom du premier joueur : "
+	prenom1 <- lecture au clavier
+	Afficher "Saisir le prénom du second joueur : "
+	prenom2 <- lecture au clavier
+Fin de Si
+Si nombre d'arguments inférieur ou égal à 2
+	Afficher "Saisir le nombre de parties à jouer : "
+	nbParties <- lecture au clavier et conversion en entier
+Fin de Si	
+Pour np variant de 0 à nbParties-1
+	resultat <- jouerPartie(plateau, np, prenom1, prenom2, s1, s2)
+	Si resultat égal à 1
+		total1 <- total1 + 3
+	Sinon
+		Si resultat égal à 2
+			total2 <- total2 + 3
+		Sinon
+			total1 <- total1 + 1
+			total2 <- total2 + 1
+		Fin de Si
+	Fin de Si
+	Si np < nbParties-1
+		afficherResultatsPartiels(np, prenom1, prenom2, resultat, total1, total2)
+	Fin de Si	
+Fin de Pour
+afficherResultatsFinaux(prenom1, prenom2, total1, total2)
