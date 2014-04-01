@@ -94,4 +94,34 @@ Définir une fonction iaGagne (p de type tableau de 3 tableaux de 3 caractères, c
 		Fin de Si
 		Renvoyer detectePresqueGagneD(p, c1, c2)
 Fin de la fonction detecteAlignement	
+
+Définir une fonction trouveCaseVide(p de type tableau de 3 tableaux de 3 caractères, c1 de type caractère, c2 de type caractère)
+	Définir une variable l de type entier
+	Définir une variable c de type entier
+	Définir une variable tabCasesVides de type tableau de tableaux de 3 caractères
+	Définir une variable nbCasesVides initialisée avec 0
+	Définir une variable rang de type entier
+	Si p[1][1] est vide
+		Renvoyer "22"
+	Fin de Si
+	Pour l variant de 0 à 2
+		Pour c variant de 0 à 2
+			Si p[l][c] est vide
+				ajouter "l+1c+1" dans tabCasesVides
+				incrémenter nbCasesVides
+			Fin de Si
+		Fin de pour
+	Fin de Pour	
+	rang <- Générer un nombre entier aléatoire compris entre 0 et nbCasesVides-1 inclus
+	Renvoyer l'élément d'indice rang de tabCasesVides
+Fin de la fonction trouveCaseVide
+
+Définir une fonction coupJoueParOrdinateur(p de type tableau de 3 tableaux de 3 caractères, c1 de type caractère, c2 de type caractère)
+	Definir une variable cj de type coupJouable
+	cj <- iaGagne(p, c1, c2)
+	if (cj.jpg égal à 2 ou cj.jpg égal à 1)
+		Renvoyer cj.coup
+	Fin de Si
+	Renvoyer trouveCaseVide(p, c1, c2)
+Fin de la fonction coupJoueParOrdinateur
 	
