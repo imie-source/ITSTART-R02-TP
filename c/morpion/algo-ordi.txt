@@ -1,0 +1,97 @@
+Définir une structure coupJouable 
+	Définir une variable jpg de type entier
+	Définir une variable coup de type tableau de 3 caractères
+Fin de la structure coupJouable	
+
+Définir une fonction detectePresqueGagneHV(p de type tableau de 3 tableaux de 3 caractères, pos de type entier, o de type entier, c1 de type caractère, c2 de type caractère)
+	Définir une variable i de type entier
+	Définir une variable j1 de type entier initialisée avec 0
+	Définir une variable j2 de type entier initialisée avec 0
+	Définir une variable t de type entier
+	Définir une variable cj de type coupJouable
+	Définir une variable p de type entier
+	Si o égal 1 // vertical
+		Pour i variant de 0 à 2
+			Si p[i][pos] égal à c1
+				j1 <- j1 + 1
+			Sinon
+				Si p[i][pos] égal à c2
+					j2 <- j2 + 1
+				Sinon
+					p <- i
+				Fin de Si
+			Fin de Si
+		Fin de Pour
+	Sinon // horizontal
+	Pour i variant de 0 à 2
+			Si p[pos][i] égal à c1
+				j1 <- j1 + 1
+			Sinon
+				Si p[pos][i] égal à c2
+					j2 <- j2 + 1
+				Sinon
+					p <- i	
+				Fin de Si
+			Fin de Si
+		Fin de Pour	
+	Fin de Si
+	t <- j1 + j2
+	Si t égal à 2
+		Si j1 égal à 2
+			cj.jpg <- 1
+			Si o égal à 1 // vertical
+				cj.coup <- concatenation de (p+1) et (pos+1)
+			Sinon // Horizontal
+				cj.coup <- concatenation de (pos+1) et (p+1)
+			Fin de Si
+			Renvoyer cj
+		Fin de Si
+		Si j2 égal à 2
+			cj.jpg <- 2
+			Si o égal à 1 // vertical
+				cj.coup <- concatenation de (p+1) et (pos+1)
+			Sinon // Horizontal
+				cj.coup <- concatenation de (pos+1) et (p+1)
+			Fin de Si
+			Renvoyer cj
+		Fin de Si
+	Fin de Si
+	cj.jpg <- 0
+	Renvoyer cj
+Fin de la fonction detectePresqueGagneHV
+
+Définir une fonction detectePresqueGagneD(p de type tableau de 3 tableaux de 3 caractères, c1 de type caractère, c2 de type caractère)
+	Définir une variable c de type caractère initialisée avec  ' '
+	Définir une variable cj de type coupJouable
+	Si (p[0][0] égal à p[1][1] et p[2][2] est vide et c <- p[0][0] et cj.coup <- "33") ou
+	   (p[0][0] égal à p[2][2] et p[1][1] est vide et c <- p[0][0] et cj.coup <- "22") ou
+	   (p[1][1] égal à p[2][2] et p[0][0] est vide et c <- p[1][1] et cj.coup <- "11") ou
+	   (p[2][0] égal à p[0][2] et p[1][1] est vide et c <- p[2][0] et cj.coup <- "22") ou
+	   (p[2][0] égal à p[1][1] et p[0][2] est vide et c <- p[2][0] et cj.coup <- "13") ou
+	   (p[1][1] égal à p[0][2] et p[2][0] est vide et c <- p[1][1] et cj.coup <- "31")
+		Si c égal à c1
+			cj.jpg <- 1
+		Sinon 
+			cj.jpg <- 2
+		Fin de Si
+		Renvoyer cj
+	Fin de Si
+	cj.jpg <- 0
+	Renvoyer cj
+Fin de la fonction detectePresqueGagneD
+
+Définir une fonction iaGagne (p de type tableau de 3 tableaux de 3 caractères, c1 de type caractère, c2 de type caractère)
+	Définir une variable cj de type coupJouable
+	Définir une variable i de type entier 
+	Pour i variant de 0 à 2
+		cj <- detectePresqueGagneHV(p, i, 1, c1, c2)
+		Si cj.jpg différent de 0
+			Renvoyer cj
+		Fin de Si
+		cj <- detectePresqueGagneHV(p, i, 0, c1, c2)
+		Si cj.jpg différent de 0
+			Renvoyer cj
+		Fin de Si
+		Renvoyer detectePresqueGagneD(p, c1, c2)
+Fin de la fonction detecteAlignement	
+	
