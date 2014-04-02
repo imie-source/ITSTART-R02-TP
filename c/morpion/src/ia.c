@@ -112,7 +112,7 @@ char * trouveCaseVide(char p[3][3]) {
 	char tabCasesVides[9][3];
 	int nbCasesVides = 0;
 	int rang;
-	char *caseVide;
+	char *caseVide = calloc(3, sizeof(char));
 	if (p[1][1] == ' ') {
 		return "22";
 	}
