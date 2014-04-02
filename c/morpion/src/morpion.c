@@ -16,7 +16,13 @@ int main(int nbArgs, char **tabArgs) {
 	char s1 = 'X';
 	char s2 = 'O';
 	int resultat;
+	int contreOrdinateur = 0;
 
+	system("cls");
+	printf("******************************\n");
+	printf("* Morpion 1.0 by IMIE Rennes *\n");
+	printf("******************************\n\n");
+		
 	// Début de l'algorithme principal
 	if (nbArgs >= 3) {
 		strcpy(prenom1,tabArgs[1]);
@@ -26,20 +32,28 @@ int main(int nbArgs, char **tabArgs) {
 		}
 	}
 	if (nbArgs < 3) {
+		printf("Souhaitez vous jouer contre l'ordinateur ? (O/N) ");
+		gets(prenom2);
+		if (stricmp(prenom2, "O") == 0) {
+			contreOrdinateur = 1;
+		} 
 		printf("Saisir le prenom du premier joueur (%c) : ", s1);
 		gets(prenom1);
-		//printf("Saisir le prenom du second joueur (%c) : ", s2);
-		//gets(prenom2);
-		strcpy(prenom2, "Ordinateur");
+		if (!contreOrdinateur) {
+			printf("Saisir le prenom du second joueur (%c) : ", s2);
+			gets(prenom2); 
+		} else {	
+			strcpy(prenom2, "Ordinateur");
+		}	
 	}
-	if (nbArgs <= 3) {
+	if (nbArgs != 2 && nbArgs != 4) {
 		printf("Saisir le nombre de parties à jouer : ");
 		char saisie[20];
 		gets(saisie);
 		nbParties = atoi(saisie);
 	}
 	for(np = 0; np < nbParties; np++) {
-		resultat = jouerPartie(plateau, np, prenom1, prenom2, s1, s2);
+		resultat = jouerPartie(plateau, np, prenom1, prenom2, s1, s2, contreOrdinateur);
 		switch(resultat) {
 			case 1:
 				total1 += 3;

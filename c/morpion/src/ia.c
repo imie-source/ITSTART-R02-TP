@@ -88,7 +88,7 @@ struct coupJouable * detectePresqueGagneD(char p[3][3], char c1, char c2) {
 }
 
 struct coupJouable * iaGagne (char p[3][3], char c1, char c2) {
-	struct coupJouable *cj = malloc(sizeof(struct coupJouable));
+	struct coupJouable *cj;
 	if (NULL == cj) {
 		return cj;
 	}	
@@ -132,8 +132,11 @@ char * trouveCaseVide(char p[3][3]) {
 char * coupJoueParOrdinateur(char p[3][3], char c1, char c2) {
 	struct coupJouable *cj;
 	cj = iaGagne(p, c1, c2);
+	char *pCoup = malloc(3*sizeof(char));
 	if (2 == (*cj).jpg || 1 == (*cj).jpg) {
-		return (*cj).coup;
+		strcpy(pCoup, (*cj).coup); 
+		free(cj);
+		return pCoup;
 	}
 	return trouveCaseVide(p);
 }

@@ -12,7 +12,7 @@ int coupNonAutorise(char p[3][3], int l, int c) {
 		   (' ' != p[l-1][c-1]);
 }
 
-int jouerPartie(char p[3][3], int n, char *p1, char *p2, char c1, char c2) {
+int jouerPartie(char p[3][3], int n, char *p1, char *p2, char c1, char c2, int co) {
 	int nbCoups = 0;
 	int aligne = 0;
 	int j = (n % 2)+1;
@@ -28,11 +28,13 @@ int jouerPartie(char p[3][3], int n, char *p1, char *p2, char c1, char c2) {
 		// et on "boucle" tant que ce n'est pas le cas
 		while(coupIncorrect) {
 			printf("%s, a vous de jouer (LC, ex 32) :", (1 == j) ? p1 : p2);
-			if (1 == j) { 
+			if (1 == j || 0 == co) { 
 				gets(saisie);
 			} else {
 				printf("\n");
-				strcpy(saisie, coupJoueParOrdinateur(p, c1, c2));
+				char *pCoup = coupJoueParOrdinateur(p, c1, c2);
+				strcpy(saisie, pCoup);
+				free(pCoup);
 			}
 			li = saisie[0]-'0';
 			ci = saisie[1]-'0';
