@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "../include/plateau.h"
 #include "../include/partie.h"
+#include "../include/ia.h"
 
 int coupNonAutorise(char p[3][3], int l, int c) {
 	return l > 3 || l < 1 ||
@@ -26,7 +28,12 @@ int jouerPartie(char p[3][3], int n, char *p1, char *p2, char c1, char c2) {
 		// et on "boucle" tant que ce n'est pas le cas
 		while(coupIncorrect) {
 			printf("%s, a vous de jouer (LC, ex 32) :", (1 == j) ? p1 : p2);
-			gets(saisie);
+			if (1 == j) { 
+				gets(saisie);
+			} else {
+				printf("\n");
+				strcpy(saisie, coupJoueParOrdinateur(p, c1, c2));
+			}
 			li = saisie[0]-'0';
 			ci = saisie[1]-'0';
 			coupIncorrect = coupNonAutorise(p, li, ci);

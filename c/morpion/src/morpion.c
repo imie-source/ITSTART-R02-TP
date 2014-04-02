@@ -28,8 +28,9 @@ int main(int nbArgs, char **tabArgs) {
 	if (nbArgs < 3) {
 		printf("Saisir le prenom du premier joueur (%c) : ", s1);
 		gets(prenom1);
-		printf("Saisir le prenom du second joueur (%c) : ", s2);
-		gets(prenom2);
+		//printf("Saisir le prenom du second joueur (%c) : ", s2);
+		//gets(prenom2);
+		strcpy(prenom2, "Ordinateur");
 	}
 	if (nbArgs <= 3) {
 		printf("Saisir le nombre de parties à jouer : ");
