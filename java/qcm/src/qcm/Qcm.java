@@ -60,7 +60,14 @@ public class Qcm {
         return res;
     }
 
-    
+    /**
+     * Chiffre le contenu d'un fichier source dans un fichier cible
+     * 
+     * @param cheminSource Chemin du fichier source
+     * @param cheminCible Chemin du fichier cible
+     * @param cle Décalage des caractères
+     * @return Vrai si le fichier cible a été créé, faux sinon
+     */
     public static boolean chiffreFichier(String cheminSource, String cheminCible, int cle){
         Scanner scanner;
         PrintWriter ecriture;
