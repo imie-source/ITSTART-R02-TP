@@ -8,6 +8,7 @@ package qcm;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,13 +59,41 @@ public class Qcm {
         }
         return res;
     }
+
     
+    public static boolean chiffreFichier(String cheminSource, String cheminCible, int cle){
+        Scanner scanner;
+        PrintWriter ecriture;
+        try {
+            scanner = new Scanner(new File(cheminSource));
+            ecriture = new PrintWriter(new File(cheminCible));
+            while (scanner.hasNextLine()) {
+                // line : chaîne "claire"
+                String line = scanner.nextLine();
+                // ligne : chaîne chiffrée
+                String ligne = Qcm.chiffre(cle, line);
+                ecriture.println(ligne);
+            }
+            scanner.close();
+            ecriture.close();
+            return true;
+        } catch (FileNotFoundException ex) {
+            return false;
+        }    
+    }
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         System.out.println("Serge : " + Qcm.chiffre(-5, "Serge"));
-        System.out.println("data.txt : " + Qcm.lireFichierClaire("C:\\dev\\ITSTART-R02-TP\\java\\qcm\\build\\data.txt"));
+        //System.out.println("data.txt : " + Qcm.lireFichierClaire("C:\\dev\\ITSTART-R02-TP\\java\\qcm\\build\\data.txt"));
+        if (Qcm.chiffreFichier("C:\\dev\\ITSTART-R02-TP\\java\\qcm\\build\\data.txt",
+                               "C:\\dev\\ITSTART-R02-TP\\java\\qcm\\build\\datachiffre.txt",
+                               3)) {
+            System.out.println("Le fichier a bien été chiffré !");
+        } else {
+            System.out.println("Le fichier n'a pas été chiffré...");
+        }
     }
     
 }
