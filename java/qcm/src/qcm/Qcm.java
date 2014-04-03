@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -88,19 +89,39 @@ public class Qcm {
             return false;
         }    
     }
+    
+    public static void lireQCM() {
+        String fichier = "C:\\dev\\ITSTART-R02-TP\\java\\qcm\\build\\qcmchiffre.txt";
+        Scanner scanner;
+        try {
+            scanner = new Scanner(new File(fichier));
+            int i = 1;
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String ligne = Qcm.chiffre(-5, line);
+                StringTokenizer st = new StringTokenizer(ligne, ";");
+                System.out.println(i + " " + st.nextToken());
+                i++;
+            }
+            scanner.close();
+        } catch (FileNotFoundException ex) {
+            //Logger.getLogger(Qcm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Serge : " + Qcm.chiffre(-5, "Serge"));
+        //System.out.println("Serge : " + Qcm.chiffre(-5, "Serge"));
         //System.out.println("data.txt : " + Qcm.lireFichierClaire("C:\\dev\\ITSTART-R02-TP\\java\\qcm\\build\\data.txt"));
-        if (Qcm.chiffreFichier("C:\\dev\\ITSTART-R02-TP\\java\\qcm\\build\\data.txt",
-                               "C:\\dev\\ITSTART-R02-TP\\java\\qcm\\build\\datachiffre.txt",
+        /*if (Qcm.chiffreFichier("C:\\dev\\ITSTART-R02-TP\\java\\qcm\\build\\CGI",
+                               "C:\\dev\\ITSTART-R02-TP\\java\\qcm\\build\\CGIchiffre",
                                3)) {
             System.out.println("Le fichier a bien été chiffré !");
         } else {
             System.out.println("Le fichier n'a pas été chiffré...");
-        }
+        }*/
+        Qcm.lireQCM();
     }
     
 }
