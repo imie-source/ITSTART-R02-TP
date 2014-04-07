@@ -94,12 +94,23 @@ public class Qcm {
         }    
     }
     
+    public static QuestionReponses getQRA(Vector t) {
+        // générer un nombre aléatoire compris entre 0 et 
+        //              nombre d'éléments-1 de t
+        int ia = Qcm.random(0, t.size()-1);
+        // Récupérer l'élément de cet indice
+        QuestionReponses qra = (QuestionReponses)t.elementAt(ia);
+        // Retirer l'élément de t
+        t.removeElement(qra);
+        // Renvoyer l'élément
+        return qra;
+    }
+    
     public static Vector lireQCM() {
         String fichier = "C:\\dev\\ITSTART-R02-TP\\java\\qcm\\build\\qcmchiffre.txt";
-        Scanner scanner;
         Vector tab = new Vector();
         try {
-            scanner = new Scanner(new File(fichier));
+            Scanner scanner = new Scanner(new File(fichier));
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String ligne = Qcm.chiffre(-5, line);
@@ -162,7 +173,7 @@ public class Qcm {
             System.out.println("Le fichier n'a pas été chiffré...");
         }*/
         Vector tabQR = Qcm.lireQCM();
-        Qcm.jouer(tabQR, 1);
+        Qcm.jouer(tabQR, 2);
     }
     
 }
