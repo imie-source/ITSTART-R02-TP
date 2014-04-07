@@ -106,6 +106,25 @@ public class Qcm {
         return qra;
     }
     
+    public static int proposeLes3Reponses(QuestionReponses qr) {
+        // Afficher aléatoirement les 3 réponses possibles
+        Vector tabChoix = new Vector();
+        int iBR = 0;
+        tabChoix.add(qr.bonneReponse);
+        tabChoix.add(qr.reponse2);
+        tabChoix.add(qr.reponse3);
+        for(int c = 0; c < 3; c++) {
+            int ia = Qcm.random(0, tabChoix.size()-1);
+            System.out.println("\t" + (c+1) + " : " + tabChoix.elementAt(ia));
+            if (tabChoix.elementAt(ia).equals(qr.bonneReponse)) {
+                iBR = c+1;
+            }
+            tabChoix.removeElementAt(ia);
+        }        
+        // renvoyer l'indice de la bonne réponse
+        return iBR;
+    }
+    
     public static Vector lireQCM() {
         String fichier = "C:\\dev\\ITSTART-R02-TP\\java\\qcm\\build\\qcmchiffre.txt";
         Vector tab = new Vector();
@@ -134,25 +153,13 @@ public class Qcm {
     
     public static void jouer(Vector t, int nbQ) {
         for(int i = 0; i < nbQ; i++) {
-            QuestionReponses qr = (QuestionReponses)t.elementAt(i);
+            QuestionReponses qr = Qcm.getQRA(t);
             System.out.println(qr.question);
-            Vector tabChoix = new Vector();
-            int iBR = 0;
-            tabChoix.add(qr.bonneReponse);
-            tabChoix.add(qr.reponse2);
-            tabChoix.add(qr.reponse3);
-            for(int c = 0; c < 3; c++) {
-                int ia = Qcm.random(0, tabChoix.size()-1);
-                System.out.println("\t" + (c+1) + " : " + tabChoix.elementAt(ia));
-                if (tabChoix.elementAt(ia).equals(qr.bonneReponse)) {
-                    iBR = c+1;
-                }
-                tabChoix.removeElementAt(ia);
-            }
+            int iBR = Qcm.proposeLes3Reponses(qr);
             Scanner sc = new Scanner(System.in);
             System.out.print("Quel est votre choix ? (1/2/3) ");
-            String str = sc.nextLine();
-            if (Integer.parseInt(str) == iBR) {
+            String saisie = sc.nextLine();
+            if (Integer.parseInt(saisie) == iBR) {
                 System.out.println("Bonne réponse !");
             } else {
                 System.out.println("Mauvaise réponse...");
@@ -173,7 +180,7 @@ public class Qcm {
             System.out.println("Le fichier n'a pas été chiffré...");
         }*/
         Vector tabQR = Qcm.lireQCM();
-        Qcm.jouer(tabQR, 2);
+        Qcm.jouer(tabQR, 3);
     }
     
 }
