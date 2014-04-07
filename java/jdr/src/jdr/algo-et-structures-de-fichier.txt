@@ -1,0 +1,68 @@
+Algo générique :
+
+Selon le type de noeud
+    Si TEXTE
+        Afficher le texte
+        Proposer les choix
+        Saisir le choix
+        Selon le choix Afficher le nouveau noeud
+    Si COMBAT
+        Effectuer le combat
+    Si RECUPERATION
+        Ajouter l'objet dans la besace
+    Si DONNATION
+        Retirer l'objet de la besace
+    Si FIN
+        Afficher le texte
+Fin de Selon
+
+Structure d'un fichier de type TEXTE
+
+TEXTE
+texte=Vous venez de marcher pendant 1 jour, vous tombez sur Oliver QUEEN
+choix1=Vous engagez la conversation;fichier2.txt
+choix2=Vous l'ignorez superbement;fichier3.txt
+choix3=Vous le combatez;fichier4.txt
+
+Structure d'un fichier de type COMBAT
+
+COMBAT
+adversaires=Oliver QUEEN
+objet+=Epée;1
+objet+=Tiare;2
+objet+=Pistolet;5
+objetA=Arc
+victoire=fichier6.txt
+defaite=fichier7.txt
+egalite=fichier8.txt
+nbpvD=-3
+nbpvV=5
+nbpvN=-1
+
+
+Structure d'un fichier de type EVOLUTION
+
+EVOLUTION
+nbpv=5
+suite=fichier9.txt
+
+
+Structure d'un fichier de type RECUPERATION
+
+RECUPERATION
+nom=Tiare
+suite=fichier10.txt
+
+Structure d'un fichier de type DONNATION
+
+DONNATION
+nom=Arc
+suite=fichier11.txt
+
+Structure d'un fichier de type FIN
+
+FIN
+type=1 (1 : bonne, 0 : mauvaise)
+texte=Vous venez de terminer votre quête, le royaume peut dormir en paix....
+
+
