@@ -152,8 +152,11 @@ public class Qcm {
     }
     
     public static void jouer(Vector t, int nbQ) {
+        int nbr = 0;
+        Vector tabQuestionsPosees = new Vector();
         for(int i = 0; i < nbQ; i++) {
             QuestionReponses qr = Qcm.getQRA(t);
+            tabQuestionsPosees.add(qr);
             System.out.println(qr.question);
             int iBR = Qcm.proposeLes3Reponses(qr);
             Scanner sc = new Scanner(System.in);
@@ -161,9 +164,17 @@ public class Qcm {
             String saisie = sc.nextLine();
             if (Integer.parseInt(saisie) == iBR) {
                 System.out.println("Bonne réponse !");
+                nbr++;
             } else {
                 System.out.println("Mauvaise réponse...");
             }
+            System.out.println("Vous avez " + nbr + "/" + nbQ + " bonnes réponses");
+        }
+        System.out.println("voici les questions et leur bonne réponse :");
+        for(int i = 0; i < tabQuestionsPosees.size(); i++) {
+            QuestionReponses qr = (QuestionReponses)tabQuestionsPosees.elementAt(i);
+            System.out.println("* " + (i+1) + " " + qr.question);
+            System.out.println("\t-> " + qr.bonneReponse);
         }
     }
     /**
@@ -180,7 +191,7 @@ public class Qcm {
             System.out.println("Le fichier n'a pas été chiffré...");
         }*/
         Vector tabQR = Qcm.lireQCM();
-        Qcm.jouer(tabQR, 3);
+        Qcm.jouer(tabQR, 10);
     }
     
 }
