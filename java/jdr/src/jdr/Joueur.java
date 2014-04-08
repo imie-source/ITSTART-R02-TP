@@ -26,4 +26,11 @@ public class Joueur {
         this.besace = new Vector();
     } 
     
+    public void afficheBesace() {
+        System.out.println("Vous avez dans votre besace : ");
+        for(int i = 0; i < besace.size(); i++) {
+            System.out.println("\t" + besace.elementAt(i));
+        }
+    }
+    
 }

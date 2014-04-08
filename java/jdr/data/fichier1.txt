@@ -1,0 +1,4 @@
+TEXTE
+texte=Vous tombez sur une Tiare
+choix=Vous la récupérez;fichier2a.txt
+choix=Vous la laissez de côté;fichier3.txt

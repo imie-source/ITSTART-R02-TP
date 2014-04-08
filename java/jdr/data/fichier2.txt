@@ -1,0 +1,4 @@
+TEXTE
+texte=Tant mieux, elle vous protégera
+choix=Vous continuez votre route;fichier4.txt
+choix=Vous arretez le jeu;fin0.txt

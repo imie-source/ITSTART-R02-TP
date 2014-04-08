@@ -1,0 +1,3 @@
+RECUPERATION
+nom=Tiare
+suite=fichier2.txt

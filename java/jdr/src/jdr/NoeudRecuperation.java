@@ -37,8 +37,9 @@ public class NoeudRecuperation extends Noeud {
         sc.close();
     }
     
-    public String action() {
-        this.nom
+    public String action(Joueur j) {
+        j.besace.add(this.nom);
+        System.out.println(j.prenom + ", vous récupérez l'objet : " + this.nom);
         return this.suite;
     }
     

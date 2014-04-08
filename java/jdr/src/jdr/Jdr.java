@@ -52,6 +52,7 @@ public class Jdr {
         
         String repertoireData = "";
         String fichierCourant = ""; 
+        Joueur joueur = new Joueur("Serge");
         
         if (2 == args.length) {
             repertoireData = args[0];
@@ -63,7 +64,7 @@ public class Jdr {
 
         while(!fichierCourant.equals("")) {
             Noeud noeud = Jdr.analyse(repertoireData + File.separator  + fichierCourant);
-            fichierCourant = noeud.action();
+            fichierCourant = noeud.action(joueur);
         } 
         System.out.println("Le jeu est fini...");
     }

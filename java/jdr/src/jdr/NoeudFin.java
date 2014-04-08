@@ -33,7 +33,7 @@ public class NoeudFin extends Noeud {
         sc.close();
     }
     
-    public String action() {
+    public String action(Joueur j) {
         // Afficher le texte
         System.out.println(this.texte);
         return "";

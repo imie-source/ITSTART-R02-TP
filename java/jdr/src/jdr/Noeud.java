@@ -18,7 +18,7 @@ public class Noeud {
         
     }
     
-    public String action() {
+    public String action(Joueur j) {
         return "";
     }
     

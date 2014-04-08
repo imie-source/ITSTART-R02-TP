@@ -39,19 +39,29 @@ public class NoeudTexte extends Noeud {
         sc.close();
     }
     
-    public String action() {
+    public String action(Joueur j) {
         // Afficher le texte
         System.out.println(this.texte);
         // Proposer les choix
-        System.out.println("\nQue souhaitez-vous faire ?");
-        for(int i = 0; i < tabChoix.size(); i++) {
-            Choix c = (Choix)tabChoix.elementAt(i);
-            System.out.println("\t" + (i+1) + ": " + c.libelle);
+        int lechoix = 0;
+        while (0 == lechoix) {
+            System.out.println("\nQue souhaitez-vous faire ?");
+            System.out.println("\t0: Voir le contenu de ma besace");
+            for(int i = 0; i < tabChoix.size(); i++) {
+                Choix c = (Choix)tabChoix.elementAt(i);
+                System.out.println("\t" + (i+1) + ": " + c.libelle);
+            }
+            Scanner sc = new Scanner(System.in);
+            String saisie = sc.nextLine();
+            lechoix  = Integer.parseInt(saisie);
+            if (0 == lechoix) {
+                j.afficheBesace();
+            } else {
+                Choix c = (Choix)tabChoix.elementAt(lechoix-1);
+                return c.fichierCible;
+            }
         }
-        Scanner sc = new Scanner(System.in);
-        String saisie = sc.nextLine();
-        Choix c = (Choix)tabChoix.elementAt(Integer.parseInt(saisie)-1);
-        return c.fichierCible;
+        return "";
     }
     
 }
