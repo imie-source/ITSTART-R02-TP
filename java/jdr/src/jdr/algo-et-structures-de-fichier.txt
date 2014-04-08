@@ -57,7 +57,8 @@ Structure d'un fichier de type DONNATION
 
 DONNATION
 nom=Arc
-suite=fichier11.txt
+suiteO=fichier11.txt
+suiteN=fichier12.txt
 
 Structure d'un fichier de type FIN
 

@@ -1,0 +1,10 @@
+COMBAT
+adversaires=Le mage ODesespoire
+objet=Epée;1
+objet=Tiare;2
+objet=Pistolet;5
+objetA=Baton magique
+victoire=fichier9.txt
+defaite=fichier6.txt
+nbpvD=-3
+nbpvV=10

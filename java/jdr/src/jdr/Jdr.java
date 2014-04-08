@@ -38,6 +38,10 @@ public class Jdr {
                     return new NoeudFin(sc);
                 case "RECUPERATION":
                     return new NoeudRecuperation(sc);
+                case "DONATION":
+                    return new NoeudDonation(sc);  
+                case "COMBAT":
+                    return new NoeudCombat(sc);
             }
         } catch(FileNotFoundException fnfe) {
             System.err.println(fnfe);

@@ -1,0 +1,4 @@
+DONATION
+nom=Tiare
+suiteO=fichier7.txt
+suiteN=fichier6.txt

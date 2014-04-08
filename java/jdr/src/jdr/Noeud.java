@@ -6,6 +6,7 @@
 
 package jdr;
 
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -21,5 +22,10 @@ public class Noeud {
     public String action(Joueur j) {
         return "";
     }
+    
+    public static int random(int bInf, int bSup) {
+        Random r = new Random();
+        return bInf + (Math.abs(r.nextInt()) % (bSup-bInf+1)); 
+    }    
     
 }

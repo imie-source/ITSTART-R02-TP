@@ -1,0 +1,4 @@
+TEXTE
+texte=Vous vous présentez au Mage "ODesespoire"
+choix=Vous lui filez la Tiare;fichier5.txt
+choix=Vous ne lui filez pas la Tiare;fichier6.txt

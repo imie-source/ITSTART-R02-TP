@@ -1,0 +1,4 @@
+TEXTE
+texte=Le mage est content, mais vous lance une vanne
+choix=Vous le combattez;fichier8.txt
+choix=Vous ne la relevez pas, et vous continuez votre chemin;fichier9.txt

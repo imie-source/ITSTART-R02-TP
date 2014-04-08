@@ -1,0 +1,2 @@
+FIN
+texte=Votre quête est finie, félicitation !
