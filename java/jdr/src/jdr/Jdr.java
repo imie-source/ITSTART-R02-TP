@@ -7,6 +7,9 @@
 package jdr;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import jdr.NoeudTexte;
 
 /**
  *
@@ -21,7 +24,22 @@ public class Jdr {
      * @param chemin Chemin du fichier à analyser
      * @return \Object
      */
-    public static Object analyse(String chemin) {
+    public static Noeud analyse(String chemin) {
+        try {
+            // J'ouvre en lecture le fichier passé en argument
+            Scanner sc = new Scanner(new File(chemin));
+            // Je lis la première ligne
+            String type = sc.nextLine();
+            // En fonction de la première ligne
+            switch(type) {
+                case "TEXTE":
+                    return new NoeudTexte(sc);
+                case "FIN":
+                    return new NoeudFin(sc);
+            }
+        } catch(FileNotFoundException fnfe) {
+            System.err.println(fnfe);
+        }
         return null;
     }
     
@@ -30,8 +48,8 @@ public class Jdr {
      */
     public static void main(String[] args) {
         
-        String repertoireData;
-        String fichierCourant; 
+        String repertoireData = "";
+        String fichierCourant = ""; 
         
         if (2 == args.length) {
             repertoireData = args[0];
@@ -41,10 +59,11 @@ public class Jdr {
             System.exit(0);
         }
 
-        while(true) {
-            Object noeud = Jdr.analyse(repertoireData + File.pathSeparator  + fichierCourant);
+        while(!fichierCourant.equals("")) {
+            Noeud noeud = Jdr.analyse(repertoireData + File.separator  + fichierCourant);
             fichierCourant = noeud.action();
-        }    
+        } 
+        System.out.println("Le jeu est fini...");
     }
     
 }
