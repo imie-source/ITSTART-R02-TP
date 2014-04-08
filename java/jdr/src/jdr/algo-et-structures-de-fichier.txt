@@ -22,7 +22,7 @@ TEXTE
 texte=Vous venez de marcher pendant 1 jour, vous tombez sur Oliver QUEEN
 choix1=Vous engagez la conversation;fichier2.txt
 choix2=Vous l'ignorez superbement;fichier3.txt
-choix3=Vous le combatez;fichier4.txt
+choix3=Vous le combattez;fichier4.txt
 
 Structure d'un fichier de type COMBAT
 

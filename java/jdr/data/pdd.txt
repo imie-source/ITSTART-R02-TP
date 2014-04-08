@@ -1,0 +1,4 @@
+TEXTE
+texte=La mission que l'on vous propose est de sauver la Reine.
+choix1=Vous acceptez la mission;fichier1.txt
+choix2=Vous la refusez;fin0.txt
