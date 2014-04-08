@@ -36,6 +36,8 @@ public class Jdr {
                     return new NoeudTexte(sc);
                 case "FIN":
                     return new NoeudFin(sc);
+                case "RECUPERATION":
+                    return new NoeudRecuperation(sc);
             }
         } catch(FileNotFoundException fnfe) {
             System.err.println(fnfe);
