@@ -1,8 +1,10 @@
-# script créé le : Mon Apr 28 16:12:27 CEST 2014 -   syntaxe MySQL ;
+# script crÃ©Ã© le : Mon Apr 28 16:12:27 CEST 2014 -   syntaxe MySQL ;
 
 DROP DATABASE IF EXISTS jdr;
 
-CREATE DATABASE jdr;
+CREATE DATABASE jdr 
+	DEFAULT CHARACTER SET utf8
+	DEFAULT COLLATE utf8_general_ci;
 
 USE  jdr ;
 
@@ -15,7 +17,7 @@ PRIMARY KEY (IdPersonnage) ) ENGINE=InnoDB;
 DROP TABLE IF EXISTS Statistique ;
 CREATE TABLE Statistique (IdStatistique int AUTO_INCREMENT NOT NULL,
 LibelleStatistique VARCHAR(100),
-ValeurStatistique INT COMMENT 'Positive : attaque, Négative : défense',
+ValeurStatistique INT COMMENT 'Positive : attaque, NÃ©gative : dÃ©fense',
 DureeStatistique INT COMMENT 'En nombre de jours',
 IdPersonnage INT NOT NULL COMMENT 'Lien entre la table Statistique et la table Personnage',
 IdObjet INT NOT NULL,
@@ -57,8 +59,8 @@ PRIMARY KEY (IdEvenement,
  IdChoix,
  IdTypeChoix) ) ENGINE=InnoDB;
 
-DROP TABLE IF EXISTS Est_utilisé_lors ;
-CREATE TABLE Est_utilisé_lors (IdObjet int AUTO_INCREMENT NOT NULL,
+DROP TABLE IF EXISTS Est_utilise_lors ;
+CREATE TABLE Est_utilise_lors (IdObjet int AUTO_INCREMENT NOT NULL,
 IdEvenement INT NOT NULL,
 PRIMARY KEY (IdObjet,
  IdEvenement) ) ENGINE=InnoDB;
@@ -78,7 +80,7 @@ ALTER TABLE Evenement ADD CONSTRAINT FK_Evenement_IdTypeEvenement FOREIGN KEY (I
 ALTER TABLE Propose_le_choix ADD CONSTRAINT FK_Propose_le_choix_IdEvenement FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement);
 ALTER TABLE Propose_le_choix ADD CONSTRAINT FK_Propose_le_choix_IdChoix FOREIGN KEY (IdChoix) REFERENCES Choix (IdChoix);
 ALTER TABLE Propose_le_choix ADD CONSTRAINT FK_Propose_le_choix_IdTypeChoix FOREIGN KEY (IdTypeChoix) REFERENCES TypeChoix (IdTypeChoix);
-ALTER TABLE Est_utilisé_lors ADD CONSTRAINT FK_Est_utilisé_lors_IdObjet FOREIGN KEY (IdObjet) REFERENCES Objet (IdObjet);
-ALTER TABLE Est_utilisé_lors ADD CONSTRAINT FK_Est_utilisé_lors_IdEvenement FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement);
+ALTER TABLE Est_utilise_lors ADD CONSTRAINT FK_Est_utilise_lors_IdObjet FOREIGN KEY (IdObjet) REFERENCES Objet (IdObjet);
+ALTER TABLE Est_utilise_lors ADD CONSTRAINT FK_Est_utilise_lors_IdEvenement FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement);
 ALTER TABLE Participe_lors ADD CONSTRAINT FK_Participe_lors_IdPersonnage FOREIGN KEY (IdPersonnage) REFERENCES Personnage (IdPersonnage);
 ALTER TABLE Participe_lors ADD CONSTRAINT FK_Participe_lors_IdEvenement FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement);
