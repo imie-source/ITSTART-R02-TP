@@ -3,6 +3,9 @@
 -- Oblige à dialoguer en UTF8
 CHARSET 'utf8';
 
+-- On utilise la base jdr
+USE jdr;
+
 -- table TypeEvenement
 
 -- On supprime l'ensemble des types 
