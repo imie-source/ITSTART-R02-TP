@@ -6,6 +6,10 @@ CHARSET 'utf8';
 -- On utilise la base jdr
 USE jdr;
 
+
+-- On désactive les contraintes d'intégrité
+SET FOREIGN_KEY_CHECKS = 0;
+
 -- table TypeEvenement
 
 -- On supprime l'ensemble des types 
@@ -29,5 +33,7 @@ INSERT INTO TypeChoix (LibelleTypeChoix)
 		   ('Victoire'),
 		   ('Défaite'),
 		   ('Nul');
-	
+
+-- On réactive les contraintes
+SET FOREIGN_KEY_CHECKS = 1;	
 	
