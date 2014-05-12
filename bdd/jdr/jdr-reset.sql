@@ -1,13 +1,13 @@
--- Initialisation des données de la base
+-- Initialisation des donnÃ©es de la base
 
--- Oblige à dialoguer en UTF8
+-- Oblige Ã  dialoguer en UTF8
 CHARSET 'utf8';
 
 -- On utilise la base jdr
 USE jdr;
 
 
--- On désactive les contraintes d'intégrité
+-- On dÃ©sactive les contraintes d'intÃ©gritÃ©
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- On vide les tables pour un nouveau jeu
@@ -20,11 +20,11 @@ TRUNCATE personnage;
 TRUNCATE propose_le_choix;
 TRUNCATE statistique;
 
--- On crée un personnage par défaut pour le joueur (id : 1)
+-- On crÃ©e un personnage par dÃ©faut pour le joueur (id : 1)
 INSERT INTO personnage (IdPersonnage, PvPersonnage, NomPersonnage) VALUES (1, 20, "Joueur");
 
--- On crée un évènement de départ par défaut
-INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES (1, "Texte de départ", 1);
+-- On crÃ©e un Ã©vÃ¨nement de dÃ©part par dÃ©aut
+INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES (1, "Texte de dÃ©part", 1);
 
--- On réactive les contraintes d'intégrité
+-- On rÃ©active les contraintes d'intÃ©gritÃ©
 SET FOREIGN_KEY_CHECKS = 1;
