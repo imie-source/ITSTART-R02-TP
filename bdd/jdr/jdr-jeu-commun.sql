@@ -33,7 +33,7 @@ INSERT INTO personnage (IdPersonnage, NomPersonnage, PvPersonnage) VALUES
 INSERT INTO objet (IdObjet, NomObjet, IdPersonnage) VALUES
 	(1, "Paquet de Riz", 2),
 	(2, "Epée", 6),
-	(3, "Bouteille", NULL),
+	(3, "Bouteille", 11),
 	(4, "Bilboquet", 16),
 	(5, "Tronçonneuse", 19),
 	(6, "Fiole",  NULL),
@@ -94,12 +94,41 @@ INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES (5, 
 INSERT INTO participe_lors (IdEvenement, IdPersonnage) VALUES (5, 11);	
 INSERT INTO choix (IdChoix, LibelleChoix, IdEvenement) VALUES 
 	(9, 'victoire', 6),
-	(10, 'défaite', 7);
+	(10, 'défaite', 7); 
 INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES 
 	(5, 9, 2),
 	(5, 10, 3);	
 
+-- Evènement 6
+INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES (6, 'Vous n''en avez fait qu''une bouchée de ce méchant rat... Derrière lui se trouve une bouteille', 1);
+INSERT INTO choix (IdChoix, LibelleChoix, IdEvenement) VALUES (11, 'Vous pouvez vous emparer de la bouteille ainsi que l''écu...', 8);
+INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES (6, 11, 1);
+INSERT INTO est_utilise_lors (IdEvenement, IdObjet) VALUES 
+	(6, 3),
+	(6, 11);
 
+-- Evènement 7
+INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES 
+	(7, 'Oh le noob... Défoncé par un pauvre rat...', 1);
+INSERT INTO choix (IdChoix, LibelleChoix, IdEvenement) VALUES 
+	(12, 'vous retournez piteux', 4);
+INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES 
+	(7, 12, 1);
+INSERT INTO participe_lors (IdEvenement, IdPersonnage) VALUES 
+	(7, 11);	
+
+-- Evènement 8
+INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES 
+	(8, 'Vous récupérez la bouteille et l''écu', 4);
+INSERT INTO choix (IdChoix, LibelleChoix, IdEvenement) VALUES 
+	(13, 'vous retournez dans le château', 4);
+INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES 
+	(8, 13, 1);
+INSERT INTO est_utilise_lors (IdEvenement, IdObjet) VALUES 
+	(8, 3),
+	(8, 11);	
+	
+	
 	
 SET FOREIGN_KEY_CHECKS = 1;	
 	
