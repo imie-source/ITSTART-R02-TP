@@ -1,7 +1,7 @@
 -- Configuration du jeu "en commun"
 
 -- Oblige à dialoguer en UTF8
-CHARSET 'utf8';
+DEFAULT CHARSET 'utf8';
 
 -- On utilise la base jdr
 USE jdr;
@@ -47,5 +47,25 @@ INSERT INTO objet (IdObjet, NomObjet, IdPersonnage) VALUES
 	(14, "Serviette", NULL),
 	(15, "Carte", 15);
 	
+-- Ajout des évenements
+
+-- Evènement 1
+UPDATE evenement SET TexteEvenement = 'Mes homages votre majesté, votre seigneurie venez d''atteindre le pays des 6 royaumes, vous vous dirigez vers le royaume de Brocéliande...' WHERE IdEvenement = 1;
+INSERT INTO choix (IdChoix, LibelleChoix, IdEvenement) VALUES (1, 'Vous vous rendez en Brocéliande', 2);
+INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES (1, 1, 1);
+
+-- Evènement 2
+INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES (2, 'Vous prenez séance auprès de Morgane, qui vous explique qu''un dragon terrorise le pays des 6 royaumes et qu''aucun des 6 rois ou reine ne réussit à s''en débarraser. Vous êtes leur dernière chance de survie. Elle vous propose de vous filer le gourdin', 1);
+INSERT INTO choix (IdChoix, LibelleChoix, IdEvenement) VALUES 
+	(2, 'Vous prenez le gourdin', 3),
+	(3, 'Vous ne prenez pas le gourdin', 4),
+	(4, 'Vous testez votre art du combat contre un rat', 5),
+	(5, 'Vous rejoignez le périph SE', 9);
+INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES 
+	(2, 2, 1),
+	(2, 3, 1),
+	(2, 4, 1),
+	(2, 5, 1);
+
 SET FOREIGN_KEY_CHECKS = 1;	
 	
