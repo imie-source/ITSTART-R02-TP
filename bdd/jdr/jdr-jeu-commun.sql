@@ -1,7 +1,7 @@
 -- Configuration du jeu "en commun"
 
 -- Oblige à dialoguer en UTF8
-DEFAULT CHARSET 'utf8';
+CHARSET 'utf8';
 
 -- On utilise la base jdr
 USE jdr;
@@ -128,7 +128,80 @@ INSERT INTO est_utilise_lors (IdEvenement, IdObjet) VALUES
 	(8, 3),
 	(8, 11);	
 	
+-- Evènement 9
+INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES 
+	(9, 'Vous voici à la croisée du périph SE...', 1);
+INSERT INTO choix (IdChoix, LibelleChoix, IdEvenement) VALUES 
+	(14, 'Vous vous dirigez vers le royaume de l''Est', 10),
+	(15, 'Vous vous dirigez vers le royaume du Sud', 11);
+INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES 
+	(9, 14, 1),
+	(9, 15, 1);	
 	
+-- Evènement 10
+INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES 
+	(10, 'Bienvenue au royaume de Poutine !', 1);
+
+-- Evènement 11
+INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES 
+	(11, 'En chemin, vous tombez sur un Ivrogne... Il vous demande : "T''as pas du schnaps pour un pauvre miséreux ?"', 1);
+INSERT INTO choix (IdChoix, LibelleChoix, IdEvenement) VALUES 
+	(16, 'Vous lui donnez gentiment votre bouteille', 12),
+	(17, 'Vous n''avez pas ou ne souhaitez pas lui donner la bouteille', 13);
+INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES 
+	(11, 16, 1),
+	(11, 17, 1);
+INSERT INTO est_utilise_lors (IdEvenement, IdObjet) VALUES 
+	(11, 3);
+INSERT INTO participe_lors (IdEvenement, IdPersonnage) VALUES 
+	(11, 18);		
+	
+	
+-- Evènement 12
+INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES 	
+	(12, 'Vous lui faites don de votre bouteille', 5);
+INSERT INTO choix (IdChoix, LibelleChoix, IdEvenement) VALUES 
+	(18, 'Vous lui donnez gentiment votre bouteille', 14);
+INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES 
+	(12, 18, 1);	
+INSERT INTO est_utilise_lors (IdEvenement, IdObjet) VALUES 
+	(12, 3);
+INSERT INTO participe_lors (IdEvenement, IdPersonnage) VALUES 
+	(12, 18);		
+	
+
+-- Evènement 13
+INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES 	
+	(13, 'L''Ivrogne n''a pas sa bouteille, il s''énerve, et le combat est engagé', 2);
+INSERT INTO choix (IdChoix, LibelleChoix, IdEvenement) VALUES 
+	(19, 'victoire', 14),
+	(20, 'défaite', 15);
+INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES 
+	(13, 19, 2),
+	(13, 20, 3);
+INSERT INTO participe_lors (IdEvenement, IdPersonnage) VALUES 
+	(13, 18);		
+	
+
+-- Evènement 14
+INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES 
+	(14, 'Vous continuez votre chemin sans encombre...', 1);
+INSERT INTO choix (IdChoix, LibelleChoix, IdEvenement) VALUES 
+	(21, 'Direction le Sud !', 16);
+INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES 
+	(14, 21, 1);		
+
+-- Evènement 15
+INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES 
+	(15, 'Vous  reprenez vos esprits, et continuez votre chemin sans encombre...', 1);
+INSERT INTO choix (IdChoix, LibelleChoix, IdEvenement) VALUES 
+	(22, 'Direction le Sud !', 16);
+INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES 
+	(15, 22, 1);		
+
+-- Evènement 16
+INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES 
+	(16, 'Bienvenue au royaume de Bens !', 1);
 	
 SET FOREIGN_KEY_CHECKS = 1;	
 	

@@ -25,7 +25,7 @@
 13 : Combat contre Ivrogne
 		V -> 14
 		D -> 15
-14 : Récupération de l'épée -> 16
+14 : On continue le chemin -> 16
 15 : PV-- pour nous -> 16
 16 : Bienvenue chez le Roi Bens
 		
