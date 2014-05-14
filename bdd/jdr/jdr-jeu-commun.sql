@@ -67,9 +67,16 @@ INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES
 	(2, 4, 1),
 	(2, 5, 1);
 
--- Evènement 3	 
+-- Evènement 3
+-- Création de l'évènement de type récupération	 
 INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES (3, 'La reine Morgane vous file le gourdin, qui vous emplie de joie', 4);
+-- Création du seul choix après la récup
 INSERT INTO choix (IdChoix, LibelleChoix, IdEvenement) VALUES (6, 'Vous vous rafraichissez...', 4);
+-- Affecte ce choix à l'évènement
 INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES (3, 6, 1);
+-- indique quel objet est récupéré par le joueur
+INSERT INTO est_utilise_lors (IdEvenement, IdObjet) VALUES (3, 7);
+
+
 SET FOREIGN_KEY_CHECKS = 1;	
 	
