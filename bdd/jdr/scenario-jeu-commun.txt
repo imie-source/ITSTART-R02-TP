@@ -1,0 +1,31 @@
+1 : Départ -> 2
+2 : Morgane | Histoire
+		Gourdin -> 3
+		Pas de Gourdin -> 4
+		Tuto combat rat -> 5
+		Périph SE -> 9
+3 : Récup du gourdin -> 4
+4 : Après vous avoir rafraîchi
+		Tuto combat rat -> 5
+		Quitter Brocéliande -> 9
+5 : Combat contre rat
+		V -> 6
+		D -> 7
+6 : Victoire contre le rat -> 8
+7 : Défaite, pv-- -> 4
+8 : Récupération de la bouteille -> 4
+9 : Vous êtes sur le périph SE
+		Vers le royaume de l'Est -> 10
+		Vers le royaume du Sud -> 11
+10 : Bienvenue chez Poutine
+11 : Rencontre avec l'ivrogne
+		Donne une bouteille -> 12
+		Donne pas la bouteille -> 13
+12 : Don de la bouteille -> 14
+13 : Combat contre Ivrogne
+		V -> 14
+		D -> 15
+14 : Récupération de l'épée -> 16
+15 : PV-- pour nous -> 16
+16 : Bienvenue chez le Roi Bens
+		
