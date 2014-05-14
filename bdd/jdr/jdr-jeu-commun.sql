@@ -66,6 +66,8 @@ INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES
 	(2, 3, 1),
 	(2, 4, 1),
 	(2, 5, 1);
+-- la reine Morgane est présente lors de cet évènement
+INSERT INTO participe_lors (IdEvenement, IdPersonnage) VALUES (2, 7);	
 
 -- Evènement 3
 -- Création de l'évènement de type récupération	 
@@ -77,6 +79,27 @@ INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES (3, 6, 1
 -- indique quel objet est récupéré par le joueur
 INSERT INTO est_utilise_lors (IdEvenement, IdObjet) VALUES (3, 7);
 
+-- Evènement 4
+INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES (4, 'Après vous être rafraichi, vous souhaitez...', 1);
+INSERT INTO choix (IdChoix, LibelleChoix, IdEvenement) VALUES 
+	(7, 'vous entraîner au combat sur un rat', 5),
+	(8, 'quitter Brocéliande, direction le Périph SE', 9);
+INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES 
+	(4, 7, 1),
+	(4, 8, 1);
 
+-- Evènement 5
+INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES (5, 'Vous vous entraînez au combat sur un redoutable rat velu. L''issue est incertaine...', 2);
+-- le rat est présent lors de cet évènement
+INSERT INTO participe_lors (IdEvenement, IdPersonnage) VALUES (5, 11);	
+INSERT INTO choix (IdChoix, LibelleChoix, IdEvenement) VALUES 
+	(9, 'victoire', 6),
+	(10, 'défaite', 7);
+INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES 
+	(5, 9, 2),
+	(5, 10, 3);	
+
+
+	
 SET FOREIGN_KEY_CHECKS = 1;	
 	
