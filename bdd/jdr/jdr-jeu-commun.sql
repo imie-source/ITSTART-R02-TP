@@ -67,5 +67,9 @@ INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES
 	(2, 4, 1),
 	(2, 5, 1);
 
+-- Evènement 3	 
+INSERT INTO evenement (IdEvenement, TexteEvenement, IdTypeEvenement) VALUES (3, 'La reine Morgane vous file le gourdin, qui vous emplie de joie', 4);
+INSERT INTO choix (IdChoix, LibelleChoix, IdEvenement) VALUES (6, 'Vous vous rafraichissez...', 4);
+INSERT INTO propose_le_choix (IdEvenement, IdChoix, IdTypeChoix) VALUES (3, 6, 1);
 SET FOREIGN_KEY_CHECKS = 1;	
 	
