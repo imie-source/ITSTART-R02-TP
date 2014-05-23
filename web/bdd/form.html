@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<title>Formulaire de s&eacute;lection d'un personnage</title>
+	</head>
+	<body>
+	<h1 style="text-align: center; color: blue; color: #0000ff; color: #00f;">Formulaire de s&eacute;lection d'un personnage</h1>
+	<p style="font-size: 1.5em; text-align: left; margin-left: 10%;">Liste des personnages pouvant &ecirc;tre s&eacute;lectionn&eacute;s :</p>
+	<!--	<p style="font-size: 40pt;">Liste des personnages pouvant &ecirc;tre s&eacute;lectionn&eacute;s :</p>
+	<p style="font-size: 40%;">Liste des personnages pouvant &ecirc;tre s&eacute;lectionn&eacute;s :</p>
+	<p style="font-size: 100%;">Liste des personnages pouvant &ecirc;tre s&eacute;lectionn&eacute;s :</p>
+	<p style="font-size: 1.5em;">Liste des personnages pouvant &ecirc;tre s&eacute;lectionn&eacute;s :</p>
+	//-->
+	<form method="POST">
+		<select name="idpersonnage" 
+				style="display: block; width: 40%; margin: auto; font-size: 1em;">
+			<option>s&eacute;lectionnez votre personnage</option>
+			<?= $options ?>
+		</select>
+		<input type="submit" value="C'est mon choix" 
+			   style="display: block; width: 30%; margin: auto; margin-top: 5em; font-size: 1em; font-weight: bold;" />
+	</form>
+	</body>
+</html>

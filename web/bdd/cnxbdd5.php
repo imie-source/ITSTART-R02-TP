@@ -24,8 +24,6 @@
 		die($msg);
 	}
 	
-	echo "je me suis connect&eacute; &agrave; la base '" . $bddName . "'<br />\n";
-	
 	// Si on a sélectionné un choix dans la liste
 	// On affiche l'id du choix
 	if (!empty($_POST["idpersonnage"])) {
@@ -46,23 +44,17 @@
 	$sth = $pdo->query($requete);
 	$result = $sth->fetchAll(PDO::FETCH_ASSOC);
 	
-	echo "<form method=\"POST\">\n";
+	$options = "";
 	
-	echo "<select name=\"idpersonnage\">\n";
-	echo "<option></option>\n";
 	foreach($result as $row) {
-		$option = "<option value=\"";
-		$option .= $row["IdPersonnage"] . "\">";
-		$option .= $row["NomPersonnage"];
-		$option .= " (" . $row["PvPersonnage"] . ")";
-		$option .= "</option>\n";
-		echo $option;
+		$options .= "<option value=\"";
+		$options .= $row["IdPersonnage"] . "\">";
+		$options .= $row["NomPersonnage"];
+		$options .= " (" . $row["PvPersonnage"] . ")";
+		$options .= "</option>\n";
 	}
 	
-	echo "</select>\n";
-	
-	echo "<input type=\"submit\" value=\"C'est mon choix\" />\n";
-	
-	echo "</form>\n";
+	include("form.html");
+
 	
 	
