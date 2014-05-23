@@ -24,35 +24,33 @@
 		die($msg);
 	}
 	
-	/*
-	$link = mysql_connect($bddHost, $bddUser, $bddPassword);
-	if ($link === false) {
-		die("moi pas réussi connexion...");
-	} 
-	echo "c'est cool ! : " . $link . "<br />\n";
-	$bddcnx = mysql_select_db($bddName, $link);
-	if (!$bddcnx) {
-		die("pas de base jdr à se mettre sous la dent...");
-	} */
 	echo "je me suis connect&eacute; &agrave; la base '" . $bddName . "'<br />\n";
-	die();
+	
 	// Si on a sélectionné un choix dans la liste
 	// On affiche l'id du choix
 	if (!empty($_POST["idpersonnage"])) {
-		$requete2 .=  $_POST["idpersonnage"];
-		$result = mysql_query($requete2, $link);
-		$row = mysql_fetch_assoc($result);
-		die("Vous avez sélectionné le personnage : " . $row["NomPersonnage"]);
+		$stmt = $pdo->prepare($requete2);
+		$idp = $_POST["idpersonnage"];
+		if ($stmt->bindparam(':idp', $idp, PDO::PARAM_INT)) {
+			$stmt->execute();
+			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			$row = $result[0];
+			die("Vous avez s&eacute;lectionn&eacute; le personnage : " . $row["NomPersonnage"]);
+		} else {
+			die("Erreur interne (requ&ecirc;te 2)");
+		}
 	}
 	
 	// On affiche le formulaire
-	$result = mysql_query($requete, $link);
+	//$result = mysql_query($requete, $link);
+	$sth = $pdo->query($requete);
+	$result = $sth->fetchAll(PDO::FETCH_ASSOC);
 	
 	echo "<form method=\"POST\">\n";
 	
 	echo "<select name=\"idpersonnage\">\n";
 	echo "<option></option>\n";
-	while($row = mysql_fetch_assoc($result)) {
+	foreach($result as $row) {
 		$option = "<option value=\"";
 		$option .= $row["IdPersonnage"] . "\">";
 		$option .= $row["NomPersonnage"];

@@ -22,4 +22,4 @@
 	// Première requête pour avoir l'ensemble des personnages
 	$requete = "select * from personnage";
 	// Deuxième requête pour avoir un personnage précis
-	$requete2 = "select * from personnage where IdPersonnage = ";
+	$requete2 = "select * from personnage where IdPersonnage = :idp";
