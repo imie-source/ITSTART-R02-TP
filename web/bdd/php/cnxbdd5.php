@@ -1,6 +1,5 @@
 <?php
-
-	include("config.inc.php");
+	include(__DIR__ . "/../config/config.inc.php");
 	
 	// Le coeur du script
 
@@ -39,7 +38,7 @@
 			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			$row = $result[0];
 			$nomPersonnage = $row["NomPersonnage"];
-			include("selection.html");
+			include(__DIR__ . "/../html/selection.html");
 			die();
 		} else {
 			die("Erreur interne (requ&ecirc;te 2)");
@@ -61,7 +60,7 @@
 		$options .= "</option>\n";
 	}
 	
-	include("form.html");
+	include(__DIR__ . "/../html/form.html");
 
 	
 	
