@@ -24,11 +24,16 @@
 		die($msg);
 	}
 	
+	$idp = "";
+	if (!empty($_POST["idpersonnage"])) {
+		$idp = $_POST["idpersonnage"];
+	} else if (!empty($_GET["idpersonnage"])) {
+		$idp = $_GET["idpersonnage"];
+	}
 	// Si on a sélectionné un choix dans la liste
 	// On affiche l'id du choix
-	if (!empty($_POST["idpersonnage"])) {
+	if (!empty($idp)) {
 		$stmt = $pdo->prepare($requete2);
-		$idp = $_POST["idpersonnage"];
 		if ($stmt->bindparam(':idp', $idp, PDO::PARAM_INT)) {
 			$stmt->execute();
 			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
