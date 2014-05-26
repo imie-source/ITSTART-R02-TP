@@ -38,7 +38,9 @@
 			$stmt->execute();
 			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			$row = $result[0];
-			die("Vous avez s&eacute;lectionn&eacute; le personnage : " . $row["NomPersonnage"]);
+			$nomPersonnage = $row["NomPersonnage"];
+			include("selection.html");
+			die();
 		} else {
 			die("Erreur interne (requ&ecirc;te 2)");
 		}
