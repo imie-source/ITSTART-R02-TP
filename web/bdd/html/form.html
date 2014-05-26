@@ -12,12 +12,12 @@
 	<p style="font-size: 1.5em;">Liste des personnages pouvant &ecirc;tre s&eacute;lectionn&eacute;s :</p>
 	//-->
 	<form method="POST">
-		<select name="idpersonnage">
-			<option>s&eacute;lectionnez votre personnage</option>
+		<select name="idpersonnage" onchange="document.getElementById('bChoix').style.visibility = 'visible';">
+			<option value="">s&eacute;lectionnez votre personnage</option>
 			<?= $options ?>
 			<!--<?php echo $options; ?> //-->
 		</select>
-		<input type="submit" value="C'est mon choix" />
+		<input id="bChoix" type="submit" value="C'est mon choix" style="visibility: hidden;"/>
 	</form>
 	</body>
 </html>
