@@ -3,6 +3,8 @@
 	
 	// Le coeur du script
 
+	$ds = date("d/m/Y H\hi's''");
+	
 	// Connexion obligée à la base de donnée
 	
 	try {
