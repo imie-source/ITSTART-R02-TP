@@ -1,10 +1,3 @@
-<html>
-	<head>
-		<title>Formulaire de s&eacute;lection d'un personnage</title>
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
-	</head>
-	<body>
-	<h1>Formulaire de s&eacute;lection d'un personnage</h1>
 	<p>Liste des personnages pouvant &ecirc;tre s&eacute;lectionn&eacute;s :</p>
 	<!--	<p style="font-size: 40pt;">Liste des personnages pouvant &ecirc;tre s&eacute;lectionn&eacute;s :</p>
 	<p style="font-size: 40%;">Liste des personnages pouvant &ecirc;tre s&eacute;lectionn&eacute;s :</p>
@@ -12,12 +5,10 @@
 	<p style="font-size: 1.5em;">Liste des personnages pouvant &ecirc;tre s&eacute;lectionn&eacute;s :</p>
 	//-->
 	<form method="POST">
-		<select name="idpersonnage" onchange="document.getElementById('bChoix').style.visibility = 'visible';">
+		<select name="idpersonnage" id="idpersonnage" onchange="gereAffichageBouton();">
 			<option value="">s&eacute;lectionnez votre personnage</option>
 			<?= $options ?>
 			<!--<?php echo $options; ?> //-->
 		</select>
 		<input id="bChoix" type="submit" value="C'est mon choix" style="visibility: hidden;"/>
 	</form>
-	</body>
-</html>

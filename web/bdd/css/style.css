@@ -38,3 +38,19 @@ input {
 body {
 	background-color: #ffffdd;
 }
+
+#lapinEgorgeur {
+	width: 100px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+	border-radius: 10px;
+}	
+
+#copyright {
+	text-align: right;
+	font-size: 0.8em;
+	font-style: italic;
+	font-weight: bold;
+	margin-right: 5%;
+}	

@@ -38,7 +38,10 @@
 			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			$row = $result[0];
 			$nomPersonnage = $row["NomPersonnage"];
+			$titre = "Vous avez s&eacute;lectionn&eacute; un personnage !";
+			include(__DIR__ . "/../html/entete.html");
 			include(__DIR__ . "/../html/selection.html");
+			include(__DIR__ . "/../html/pieddepage.html");
 			die();
 		} else {
 			die("Erreur interne (requ&ecirc;te 2)");
@@ -59,8 +62,9 @@
 		$options .= " (" . $row["PvPersonnage"] . ")";
 		$options .= "</option>\n";
 	}
-	
+	$titre = "Liste des personnages &agrave; s&eacute;lectionner";
+	include(__DIR__ . "/../html/entete.html");
 	include(__DIR__ . "/../html/form.html");
-
+	include(__DIR__ . "/../html/pieddepage.html");
 	
 	
