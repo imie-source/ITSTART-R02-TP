@@ -1,8 +1,14 @@
 	</div><!-- id : divCorps //-->
 	<div id="divCopyright">
 		<hr />
-		<p id="dateHeure">DS: <?= $ds ?></p>
+		<p id="dateHeure">DS: <?= $ds ?> DN: 
+			<span id="dateHeureNavigateur"></span>
+		</p>
 		<p id="copyright">&copy; Serge COUD&Eacute;</p>
+		<script type="text/javascript" language="javascript">
+			getDateNavigateur();
+			setInterval("getDateNavigateur();", 900);
+		</script>
 	</div>	
 	</body>
 </html>
