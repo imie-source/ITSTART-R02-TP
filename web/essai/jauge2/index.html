@@ -2,11 +2,19 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css" />
+<script type="text/javascript" language="javascript" src="jauge.js"></script>
 </head>
 <body>
 <div id="jauge">
 	<div id="cJauge"></div>
 	<p id="tJauge">30%</p>
-</div>	
+</div>
+<script type="text/javascript" language="javascript">
+	function maj() {
+		confJauge(500, 50, '#aaffaa', '#22cc22', '#000000'); 
+		setPct(15);
+	}	
+	setTimeout("maj();", 2000);
+</script>	
 </body>
 </html>
