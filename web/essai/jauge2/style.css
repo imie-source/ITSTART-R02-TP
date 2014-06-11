@@ -1,0 +1,28 @@
+#jauge {
+	width: 300px;
+	height: 50px;
+	background-color: gray;
+	border-radius: 20px;
+	margin-top: 300px;
+	margin-left: 50%;
+}
+
+#cJauge {
+	position: absolute;
+	width: 150px;
+	height: 50px;
+	background-color: DeepPink;
+	border-radius: 20px 0 0 20px;
+}
+
+#tJauge {
+	position: absolute;
+	width: 300px;
+	height: 50px;
+	text-align: center;
+	/*border: 1px solid black;*/
+	line-height: 50px;
+	font-size: 2em;
+	font-weight: bold;
+	margin-top: 0px;
+}
