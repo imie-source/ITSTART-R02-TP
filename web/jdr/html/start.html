@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><?= $titre ?></title>
+		<link rel="stylesheet" type="text/css" href="css/jdr.css" />
+	</head>
+	<body>
+	<div id="main">
+		<p class="titre w1000">Bienvenue dans le jeu</p>
+		<p id="pNomJeu" class="w1000"><?= $nomJeu ?></p>
+		<form method="POST">
+			<p id="pSaisiePrenom" class="w1000" >Veuillez saisir votre pr&eacute;nom : 
+			<input type="text" name="prenom" id="iSaisiePrenom" /></p>
+			<button id="bJouer" type="submit">Je veux jouer !</button>
+		</form>
+	</div>
+	</body>
+</html>	

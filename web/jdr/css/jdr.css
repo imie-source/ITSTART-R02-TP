@@ -1,0 +1,134 @@
+/*
+ * Fichier CSS de l'application JDR
+ */
+
+* {
+	/*position: absolute;*/
+}	
+
+.cadreInterne {
+	border-radius: 30px;
+	border-width: 3px;
+	border-color: black;
+	border-style: solid;
+} 
+
+#main {
+	position: absolute;
+	width: 1000px;
+	left: 50%;
+	margin-left: -500px;
+	height: 600px;
+	top: 50%;
+	margin-top: -300px;
+	background-image: url('../medias/images/fond-jdr.jpg');
+}	
+
+.w1000 {
+	width: 1000px;
+	left: 0px;
+}
+
+p.titre {
+	position: absolute;
+	top: 50px;
+	text-align: center;
+	font-size: 50px;
+	font-weight: bold;
+	font-style: italic;
+	color: black;
+}
+
+#pNomJeu {
+	position: absolute;
+	top: 150px;
+	text-align: center;
+	font-size: 40px;
+	font-weight: 900;
+	font-style: normal;
+	color: #80512f;
+}
+
+#pSaisiePrenom {
+	position: absolute;
+	top: 300px;
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+#iSaisiePrenom {
+	font-size: 30px;
+	font-weight: bold;
+	width: 300px;
+	border-radius: 30px;
+	border-color: #80512f;
+	border-style: solid;
+	background-color: #fffbbc;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+#bJouer {
+	font-size: 30px;
+	font-weight: bold;
+	width: 400px;
+	height: 50px;
+	position: absolute;
+	left: 300px;
+	top: 450px;
+	border-radius: 30px;
+	border-color: black;
+	border-style: solid;
+	background-color: #80512f;
+	color: #fffbbc;
+}
+
+#scene {
+	position: absolute;
+	left: 98px;
+	top: 108px;
+	width: 345px;
+	height: 200px;
+}
+
+#texte {
+	position: absolute;
+	left: 460px;
+	top: 108px;
+	width: 430px;
+	height: 200px;
+}
+
+#personnages {
+	position: absolute;
+	left: 225px;
+	top: 325px;
+	width: 580px;
+	height: 70px;
+}
+
+#choix {
+	position: absolute;
+	left: 140px;
+	top: 410px;
+	width: 720px;
+	height: 110px;
+}
+
+#menu {
+	position: absolute;
+	left: 100px;
+	top: 590px;
+	width: 800px;
+	height: 0px;
+	background-color: rgba(255, 248, 133, 0.5);
+	display: none;
+	overflow: hidden;
+}
+
+#bouton {
+margin-left: 30px;
+margin-top: 20px;
+
+}
