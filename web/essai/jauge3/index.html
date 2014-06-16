@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script type="text/javascript" language="javascript" src="jauge.js"></script>
+</head>
+<body>
+<div id="jauge">
+	<div id="cJauge"></div>
+	<p id="tJauge">30%</p>
+</div>
+<input id="curseur" type="range" min="0" max="100" step="1" value="50" orient="vertical" onchange="updateJauge(this);"/>
+<script type="text/javascript" language="javascript">
+	confJauge(100, 100, '#000000'); 
+	updateJauge(document.getElementById('curseur'));
+</script>	
+</body>
+</html>
