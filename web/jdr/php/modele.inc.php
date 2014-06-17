@@ -50,6 +50,25 @@
 	chargeEvenement(1, $nomJeu);
  }
  
+ function getPersonnagesFromEvenement($id) {
+	$pdo = cnxBDD();
+	$requete = "SELECT * FROM personnage, participe_lors WHERE participe_lors.IdEvenement = :id AND personnage.IdPersonnage = participe_lors.IdPersonnage";
+	$stmt = $pdo->prepare($requete);
+	$res = array();
+	if ($stmt->bindparam(':id', $id, PDO::PARAM_INT)) {
+		$stmt->execute();
+		// Je récupère l'ensemble des enregistrements
+		$tabPersonnages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		if (!empty($tabPersonnages)) {
+			foreach($tabPersonnages as $personnage) {
+				$res[$personnage["IdPersonnage"]] = $personnage["NomPersonnage"];
+			}	
+		}
+	}
+	// Je retourne le tableau créé
+	return $res;
+ }
+ 
  function chargeEvenement($id, $nomJeu) {
 	$titre = $nomJeu;
 	$pdo = cnxBDD();
@@ -63,6 +82,11 @@
 		if (!empty($tabEvenement)) {
 			$texte = $tabEvenement["TexteEvenement"];
 		}
+	}
+	$tabPersonnages = getPersonnagesFromEvenement($id);
+	$personnages = "";
+	foreach($tabPersonnages as $idPerso => $nomPerso) {
+		$personnages .= $nomPerso . "<br />";
 	}
 	include("html/main.html"); 
  }
