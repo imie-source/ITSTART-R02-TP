@@ -96,8 +96,10 @@ p.titre {
 	position: absolute;
 	left: 460px;
 	top: 108px;
-	width: 430px;
-	height: 200px;
+	width: 415px;
+	height: 185px;
+	padding-left: 15px;
+	padding-top: 15px;
 }
 
 #personnages {
@@ -128,7 +130,15 @@ p.titre {
 }
 
 #bouton {
-margin-left: 30px;
-margin-top: 20px;
+	margin-left: 30px;
+	margin-top: 20px;
+}
 
+#pPrenom {
+	position: absolute;
+	top: 20px;
+	text-align: center;
+	font-size: 30px;
+	font-style: italic;
+	color: black;
 }

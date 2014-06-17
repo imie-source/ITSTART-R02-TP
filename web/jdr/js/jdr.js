@@ -28,9 +28,8 @@ function estMenuAffiche() {
 	
 function afficheMenu(sens) {
 	var menu = document.getElementById("menu");
-	affichageMenu = true;
-		menu.style.display = "block";
-		
+	affichageMenuEnCours = true;
+	menu.style.display = "block";
 	//} else {
 		if (!isValidCSSNumericValue(menu.style.top)) {
 			menu.style.top = menu.offsetTop;
@@ -40,6 +39,7 @@ function afficheMenu(sens) {
 		}
 		menu.style.height = parseInt(menu.style.height) + sens;
 		menu.style.top = parseInt(menu.style.top) - sens;
+		//alert(menu.style.top + " / " + menu.style.height);
 		if (sens > 0) {
 			if (parseInt(menu.style.height) < 110) 
 				setTimeout("afficheMenu(" + sens + ");", 50);
