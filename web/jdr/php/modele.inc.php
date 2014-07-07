@@ -90,6 +90,11 @@
 		$personnages .= $tabPerso["nom"] . " (" . $tabPerso["pdv"] . ")<br />";
 	}
 	$pdvJoueur = getPDV();
+	$tabChoix = getChoix($id);
+	$choix = "";
+	foreach($tabChoix as $tChoix) {
+		$choix .= $tChoix["libelle"] . "<br />";
+	}
 	include("html/main.html"); 
  }
  
@@ -106,4 +111,27 @@
 		}	
 	}
 	return 0;	
+ }
+ 
+ function getChoix($idEven) {
+	$pdo = cnxBDD();
+	$requete = "SELECT LibelleChoix, choix.IdEvenement,LibelleTypeChoix FROM choix, 
+	        propose_le_choix, TypeChoix WHERE propose_le_choix.idEvenement = :id 
+			AND propose_le_choix.IdChoix = choix.IdChoix AND 
+			propose_le_choix.IdTypeChoix = TypeChoix.IdTypeChoix;";
+	$stmt = $pdo->prepare($requete);
+	$res = array();
+	if ($stmt->bindparam(':id', $idEven, PDO::PARAM_INT)) {
+		$stmt->execute();
+		// Je récupère les enregistrements
+		$tabChoix = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		if (!empty($tabChoix)) {
+			foreach($tabChoix as $choix) {
+				$res[] = array( "libelle" => $choix["LibelleChoix"],
+								"idVers" => $choix["IdEvenement"],
+								"type" => $choix["LibelleTypeChoix"]);
+			}
+		}	
+	}
+	return $res;
  }
