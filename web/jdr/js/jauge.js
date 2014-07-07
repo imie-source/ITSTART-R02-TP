@@ -17,6 +17,6 @@ function updateJauge(pct) {
 	var cj = document.getElementById('cJauge');
 	var jauge = document.getElementById('jauge');
 	var tj = document.getElementById('tJauge');	
-	cj.style.height = (parseInt(jauge.style.height) * (1 - (pct/100))) + 'px';
+	cj.style.height = (parseInt(jauge.style.height) * (1 - (pct/50))) + 'px';
 	tj.innerHTML = pct;
 }
