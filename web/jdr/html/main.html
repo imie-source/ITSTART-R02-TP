@@ -3,7 +3,9 @@
 	<head>
 		<title><?= $titre ?></title>
 		<link rel="stylesheet" type="text/css" href="css/jdr.css" />
+		<link rel="stylesheet" type="text/css" href="css/jauge.css" />
 		<script type="text/javascript" language="javascript" src="js/jdr.js"></script>
+		<script type="text/javascript" language="javascript" src="js/jauge.js"></script>
 	</head>
 	<body>
 	<div id="main" onmousemove="detecteSurvolMenu(event);">
@@ -12,6 +14,14 @@
 		<div id="texte" class="cadreInterne"><?= $texte ?></div>
 		<div id="personnages" class="cadreInterne"><?= $personnages ?></div>
 		<div id="choix" class="cadreInterne">Choix</div>
+		<div id="jauge">
+			<div id="cJauge"></div>
+			<p id="tJauge">30%</p>
+		</div>
+		<script type="text/javascript" language="javascript">
+			confJauge(100, 100, '#000000'); 
+			updateJauge(50);
+		</script>	
 		<div id="menu" class="cadreInterne" onclick="afficheMenu(-3);">
 			<button id="bouton" onclick="alert('coucou');">Dire Coucou !</button>
 		</div>

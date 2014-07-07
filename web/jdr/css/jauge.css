@@ -1,0 +1,31 @@
+
+#jauge {
+	position: absolute;
+	left: 900px;
+	top: 495px;
+	background-image: url('../medias/images/blason-plein.png');
+	background-size: cover;
+}
+
+#cJauge {
+	position: absolute;
+	background-image: url('../medias/images/blason-vide.png');
+	background-size: cover;
+}
+
+#tJauge {
+	position: absolute;
+	text-align: center;
+	font-weight: bold;
+	margin-top: 0px;
+}
+
+#curseur {
+/*    writing-mode: bt-lr; /* IE */
+/*    -webkit-appearance: slider-vertical; /* WebKit */
+/*	-webkit-transform: rotate(270deg);*/
+    width: 8px;
+    height: 250px;
+    padding: 0 5px;
+	margin-top: 300px;
+}
