@@ -5,6 +5,9 @@
  * Contient l'ensemble des fonctions pour jouer au jeu
  */
  
+ // Démarrer une session côté serveur
+ session_start();
+ 
  include(__DIR__ . "/../config/config.inc.php");
  
  /**
@@ -43,8 +46,6 @@
 	if ($stmt->bindparam(':np', $prenom, PDO::PARAM_STR)) {
 		$stmt->execute();
 	}
-	// Démarrer une session côté serveur
-	session_start();
 	// Ajouter dans la session le couple prenom / $prenom
 	$_SESSION["prenom"] = $prenom;
 	chargeEvenement(1, $nomJeu);
@@ -93,7 +94,11 @@
 	$tabChoix = getChoix($id);
 	$choix = "";
 	foreach($tabChoix as $tChoix) {
-		$choix .= $tChoix["libelle"] . "<br />";
+		//$choix .= $tChoix["libelle"] . "<br />";
+		//$choix .= "<a href=\"?idEven=" . $tChoix["idVers"] . "\">" . $tChoix["libelle"] . "</a><br />\n";
+		$choix .= '<form method="POST"><input type="hidden" name="action" value="goevent" />
+		           <input type="hidden" name="idEven" value="' . $tChoix["idVers"] . '" />
+				   <input type="submit" value="' . $tChoix["libelle"] . '" /></form>';
 	}
 	include("html/main.html"); 
  }
