@@ -88,7 +88,12 @@
 	$tabPersonnages = getPersonnagesFromEvenement($id);
 	$personnages = "";
 	foreach($tabPersonnages as $idPerso => $tabPerso) {
-		$personnages .= $tabPerso["nom"] . " (" . $tabPerso["pdv"] . ")<br />";
+		//$personnages .= $tabPerso["nom"] . " (" . $tabPerso["pdv"] . ")<br />";
+		$alt = $tabPerso["nom"] . " (" . $tabPerso["pdv"] . ")";
+		$personnages .= '<img src="?action=affichepersonnage&id=' . $idPerso . 
+						'" alt="' . $alt . 
+						'" title="' . $alt . 
+						'" width="70" />';
 	}
 	$pdvJoueur = getPDV();
 	$tabChoix = getChoix($id);
@@ -139,4 +144,10 @@
 		}	
 	}
 	return $res;
+ }
+ 
+ function affichePersonnage($id) {
+	$chemin = __DIR__ . '/../medias/images/p' . $id . '.png';
+	$df = fopen($chemin, "r");
+	fpassthru($df);
  }
