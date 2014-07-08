@@ -71,10 +71,33 @@
 	return $res;
  }
  
+ function chargeEvenementTexte($titre, $texte, $personnages, $pdvJoueur, $tabChoix) {
+	$choix = "";
+	foreach($tabChoix as $tChoix) {
+		//$choix .= $tChoix["libelle"] . "<br />";
+		//$choix .= "<a href=\"?idEven=" . $tChoix["idVers"] . "\">" . $tChoix["libelle"] . "</a><br />\n";
+		$choix .= '<form method="POST"><input type="hidden" name="action" value="goevent" />
+		           <input type="hidden" name="idEven" value="' . $tChoix["idVers"] . '" />
+				   <input type="submit" value="' . $tChoix["libelle"] . '" /></form>';
+	}
+	include("html/main.html"); 
+ }
+ 
+ function chargeEvenementCombat($titre, $texte, $personnages, $pdvJoueur, $tabChoix) {
+	$valRan = rand(1, 6);
+	if ($valRan > 3) {
+		$choix = "<h1>Vous avez gagn&eacute; votre combat !</h1>";
+	} else {
+		$choix = "<h1>Vous avez perdu votre combat...</h1>";
+	}
+	include("html/main.html"); 
+ }
+ 
  function chargeEvenement($id, $nomJeu) {
 	$titre = $nomJeu;
 	$pdo = cnxBDD();
-	$requete = "SELECT * FROM Evenement WHERE IdEvenement = :id";
+	$requete = "SELECT * FROM Evenement, TypeEvenement WHERE IdEvenement = :id 
+				AND Evenement.IdTypeEvenement = TypeEvenement.IdTypeEvenement";
 	$stmt = $pdo->prepare($requete);
 	$texte = "non &eacute;crit";
 	if ($stmt->bindparam(':id', $id, PDO::PARAM_INT)) {
@@ -97,15 +120,15 @@
 	}
 	$pdvJoueur = getPDV();
 	$tabChoix = getChoix($id);
-	$choix = "";
-	foreach($tabChoix as $tChoix) {
-		//$choix .= $tChoix["libelle"] . "<br />";
-		//$choix .= "<a href=\"?idEven=" . $tChoix["idVers"] . "\">" . $tChoix["libelle"] . "</a><br />\n";
-		$choix .= '<form method="POST"><input type="hidden" name="action" value="goevent" />
-		           <input type="hidden" name="idEven" value="' . $tChoix["idVers"] . '" />
-				   <input type="submit" value="' . $tChoix["libelle"] . '" /></form>';
-	}
-	include("html/main.html"); 
+	
+	switch($tabEvenement["LibelleTypeEvenement"]) {
+		case "Combat":
+			chargeEvenementCombat($titre, $texte, $personnages, $pdvJoueur, $tabChoix);
+			break;
+		case "Texte": 
+			chargeEvenementTexte($titre, $texte, $personnages, $pdvJoueur, $tabChoix); 
+			break;
+	}	
  }
  
  function getPDV($id = 1) {
