@@ -91,6 +91,7 @@
 		$choix = "<h1>Vous avez perdu votre combat...</h1>";
 	}
 	$scene = file_get_contents(__DIR__ . "/../html/de.html");
+	$scene = str_replace("%alea%", $valRan, $scene);
 	include("html/main.html"); 
  }
  

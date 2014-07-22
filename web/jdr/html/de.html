@@ -136,14 +136,16 @@
     
 	
 	function cacheDe() {
-		$("#dice").fadeTo(2000, 0);
+		$("#dice").fadeTo(2000, 0, afficheResultat);
 	}
 	
-	
+	function afficheResultat() {
+		$("#spChoix").fadeIn(2000);
+	}
 	
     function lance() {
       $("#dice").css("transition", duration + "ms");
-      var r = 1 + Math.ceil(Math.random()*5);
+      var r = %alea%;
       var i = Math.floor(Math.random() * (tab[r].length));
       var cmd = "rotateX(" + tab[r][i][0] + "deg) rotateY(" + tab[r][i][1] + "deg) rotateZ(" + tab[r][i][2] + "deg)";
       $("#dice").css("transform", cmd);

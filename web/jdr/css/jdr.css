@@ -146,3 +146,7 @@ p.titre {
 	font-style: italic;
 	color: black;
 }
+
+#spChoix {
+	display: none;
+}	
