@@ -71,7 +71,7 @@
 	return $res;
  }
  
- function chargeEvenementTexte($titre, $texte, $personnages, $pdvJoueur, $tabChoix) {
+ function chargeEvenementTexte($titre, $texte, $personnages, $pdvJoueur, $tabChoix, $scene) {
 	$choix = "";
 	foreach($tabChoix as $tChoix) {
 		//$choix .= $tChoix["libelle"] . "<br />";
@@ -83,13 +83,14 @@
 	include("html/main.html"); 
  }
  
- function chargeEvenementCombat($titre, $texte, $personnages, $pdvJoueur, $tabChoix) {
+ function chargeEvenementCombat($titre, $texte, $personnages, $pdvJoueur, $tabChoix, $scene) {
 	$valRan = rand(1, 6);
 	if ($valRan > 3) {
 		$choix = "<h1>Vous avez gagn&eacute; votre combat !</h1>";
 	} else {
 		$choix = "<h1>Vous avez perdu votre combat...</h1>";
 	}
+	$scene = file_get_contents(__DIR__ . "/../html/de.html");
 	include("html/main.html"); 
  }
  
@@ -121,12 +122,13 @@
 	$pdvJoueur = getPDV();
 	$tabChoix = getChoix($id);
 	
+	$scene = "Sc&egrave;ne";
 	switch($tabEvenement["LibelleTypeEvenement"]) {
 		case "Combat":
-			chargeEvenementCombat($titre, $texte, $personnages, $pdvJoueur, $tabChoix);
+			chargeEvenementCombat($titre, $texte, $personnages, $pdvJoueur, $tabChoix, $scene);
 			break;
 		case "Texte": 
-			chargeEvenementTexte($titre, $texte, $personnages, $pdvJoueur, $tabChoix); 
+			chargeEvenementTexte($titre, $texte, $personnages, $pdvJoueur, $tabChoix, $scene); 
 			break;
 	}	
  }
