@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Rotation 3D Dés</title>
+<meta name="viewport" content="width=device-width">
+<style type="text/css">
+* {
+    margin: 0; 
+    padding: 0;
+    border:0;
+}
+
+body {
+  background: #343434;
+  font-family: helvetica,"Comic Sans MS",arial,sans-serif;
+  overflow: hidden;;
+}
+
+.container{
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.logo{
+  text-align: center;
+}
+
+p{
+  color: #fff;
+}
+
+button {
+  color: #333;
+  background: #aaa;
+  line-height: 40px;
+  padding: 10px 33px;
+  border-radius: 5px;
+  font-weight: bolder;
+  font-size: 20px;
+  margin: auto;
+  display: block;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+#dice {
+  position: relative;
+  margin: 10px auto 0;
+  height: 62px;
+  width: 62px;
+  transition: transform linear;
+  transform-style: preserve-3d;
+  transform-origin: 52px 52px;
+  margin-top: 200px;
+}
+
+.sf {
+  position: absolute;
+  height: 62px;
+  width: 62px;
+  padding: 20px;
+  border: 2px solid #211810;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 62px;
+}
+#dice .f1  {
+  transform: rotateX(90deg) translateZ(50px);
+  background-image: url('de-1.png');
+  background-size: contain;
+}
+#dice .f2 {
+  transform: translateZ(50px);
+  background-image: url('de-2.png');
+  background-size: contain;
+}
+#dice .f3 {
+  transform: rotateY(90deg) translateZ(50px);
+  background-image: url('de-3.png');
+  background-size: contain;
+}
+#dice .f4 {
+  transform: rotateY(180deg) translateZ(50px);
+  background-image: url('de-4.png');
+  background-size: contain;
+}
+#dice .f5 {
+  transform: rotateY(-90deg) translateZ(50px);
+  background-image: url('de-5.png');
+  background-size: contain;
+}
+#dice .f6 {
+  transform: rotateX(-90deg) rotate(180deg) translateZ(50px);
+  background-image: url('de-6.png');
+  background-size: contain;
+}
+</style>
+
+<body>
+    <div class="container">
+      <button onclick="lance();">Lance le dé !</button>
+        
+      <section id="roll-wrap">
+	<div id="dice" >
+	  <div class="sf f1"></div>
+	  <div class="sf f2"></div>
+	  <div class="sf f3"></div>
+	  <div class="sf f4"></div>
+	  <div class="sf f5"></div>
+	  <div class="sf f6"></div>
+	</div>
+      </section>
+    </div>
+    <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+    <!--<script type="text/javascript" src="prefixfree.min.js"></script>//-->
+    <script type="text/javascript">
+/*      //Prefix free support code for jquery
+      (function($, self){
+      if(!$ || !self) {
+      return;
+      }
+      for(var i=0; i<self.properties.length; i++) {
+      var property = self.properties[i],
+      camelCased = StyleFix.camelCase(property),
+      PrefixCamelCased = self.prefixProperty(property, true);
+      $.cssProps[camelCased] = PrefixCamelCased;
+      }
+      })(window.jQuery, window.PrefixFree);
+*/
+    
+    var duration = 2000; // 2 secondes
+    var tab = Array();
+    tab[1] = [ [ 0, 90, 270 ],
+               [ 0, 270, 90 ],
+               [ 90, 0, 180 ],
+               [ 90, 90, 180 ],
+               [ 90, 180, 180 ],
+               [ 90, 270, 180 ],
+               [ 180, 90, 90 ],
+               [ 180, 270, 270 ],
+               [ 270, 0, 0 ],
+               [ 270, 90, 0 ],
+	       [ 270, 180, 0 ],
+	       [ 270, 270, 0 ] ];
+    tab[2] = [ /*[ 0, 0, 0 ],*/
+               [ 0, 0, 90 ],
+               [ 0, 0, 180 ],
+               [ 0, 0, 270 ],
+               [ 180, 180, 0 ],
+               [ 180, 180, 90 ],
+               [ 180, 180, 180 ],
+               [ 180, 180, 270 ] ];
+    tab[3] = [ [ 0, 90, 180 ],
+	       [ 0, 270, 0 ],
+	       [ 90, 0, 90 ],
+	       [ 90, 90, 90 ],
+	       [ 90, 180, 90 ],
+	       [ 90, 270, 90 ],
+	       [ 180, 90, 0 ],
+	       [ 180, 270, 180 ],
+	       [ 270, 0, 270 ],
+	       [ 270, 90, 270 ],
+	       [ 270, 280, 270 ],
+	       [ 270, 270, 270 ] ];
+    tab[4] = [ [ 0, 180, 0 ],
+               [ 0, 180, 90 ],
+               [ 0, 180, 180 ],
+               [ 0, 180, 270 ],
+               [ 180, 0, 0 ],
+               [ 180, 0, 90 ],
+               [ 180, 0, 180 ],
+               [ 180, 0, 270 ] ];
+    tab[5] = [ [ 0, 90, 0 ],
+               [ 0, 270, 180 ],
+               [ 90, 0, 270 ],
+               [ 90, 90, 270 ],
+               [ 90, 180, 270 ],
+               [ 90, 270, 270 ],
+               [ 180, 90, 180 ],
+               [ 180, 270, 0 ],
+               [ 270, 0, 90 ],
+               [ 270, 90, 90 ],
+               [ 270, 180, 90 ],
+               [ 270, 270, 90 ] ];
+    tab[6] = [ [ 0, 0, 90 ],
+               [ 0, 0, 270 ],
+               [ 90, 0, 0 ],
+               [ 90, 90, 0 ],
+               [ 90, 180, 0 ],
+               [ 90, 270, 0 ],
+               [ 180, 90, 270 ],
+               [ 180, 270, 90 ],
+               [ 270, 0, 180 ],
+               [ 270, 90, 180 ],
+               [ 270, 180, 180 ],
+               [ 270, 270, 180 ] ];
+               
+               
+/*    var cmd = "rotateX(0deg) rotateY(0deg) rotateZ(0deg)"; // 2
+    var cmd = "rotateX(0deg) rotateY(0deg) rotateZ(90deg)"; // 2
+    var cmd = "rotateX(0deg) rotateY(0deg) rotateZ(180deg)"; // 2
+    var cmd = "rotateX(0deg) rotateY(0deg) rotateZ(270deg)"; // 2
+    var cmd = "rotateX(0deg) rotateY(90deg) rotateZ(0deg)"; // 5
+    var cmd = "rotateX(0deg) rotateY(90deg) rotateZ(90deg)"; // 6
+    var cmd = "rotateX(0deg) rotateY(90deg) rotateZ(180deg)"; // 3
+    var cmd = "rotateX(0deg) rotateY(90deg) rotateZ(270deg)"; // 1
+    var cmd = "rotateX(0deg) rotateY(180deg) rotateZ(0deg)"; // 4
+    var cmd = "rotateX(0deg) rotateY(180deg) rotateZ(90deg)"; // 4
+    var cmd = "rotateX(0deg) rotateY(180deg) rotateZ(180deg)"; // 4
+    var cmd = "rotateX(0deg) rotateY(180deg) rotateZ(270deg)"; // 4
+    var cmd = "rotateX(0deg) rotateY(270deg) rotateZ(0deg)"; // 3
+    var cmd = "rotateX(0deg) rotateY(270deg) rotateZ(90deg)"; // 1
+    var cmd = "rotateX(0deg) rotateY(270deg) rotateZ(180deg)"; // 5
+    var cmd = "rotateX(0deg) rotateY(270deg) rotateZ(270deg)"; // 6
+
+    var cmd = "rotateX(90deg) rotateY(0deg) rotateZ(0deg)"; // 6
+    var cmd = "rotateX(90deg) rotateY(0deg) rotateZ(90deg)"; // 3
+    var cmd = "rotateX(90deg) rotateY(0deg) rotateZ(180deg)"; // 1
+    var cmd = "rotateX(90deg) rotateY(0deg) rotateZ(270deg)"; // 5
+    var cmd = "rotateX(90deg) rotateY(90deg) rotateZ(0deg)"; // 6
+    var cmd = "rotateX(90deg) rotateY(90deg) rotateZ(90deg)"; // 3
+    var cmd = "rotateX(90deg) rotateY(90deg) rotateZ(180deg)"; // 1
+    var cmd = "rotateX(90deg) rotateY(90deg) rotateZ(270deg)"; // 5
+    var cmd = "rotateX(90deg) rotateY(180deg) rotateZ(0deg)"; // 6
+    var cmd = "rotateX(90deg) rotateY(180deg) rotateZ(90deg)"; // 3
+    var cmd = "rotateX(90deg) rotateY(180deg) rotateZ(180deg)"; // 1
+    var cmd = "rotateX(90deg) rotateY(180deg) rotateZ(270deg)"; // 5
+    var cmd = "rotateX(90deg) rotateY(270deg) rotateZ(0deg)"; // 6
+    var cmd = "rotateX(90deg) rotateY(270deg) rotateZ(90deg)"; // 3
+    var cmd = "rotateX(90deg) rotateY(270deg) rotateZ(180deg)"; // 1
+    var cmd = "rotateX(90deg) rotateY(270deg) rotateZ(270deg)"; // 5
+    
+    var cmd = "rotateX(180deg) rotateY(0deg) rotateZ(0deg)"; // 4
+    var cmd = "rotateX(180deg) rotateY(0deg) rotateZ(90deg)"; // 4
+    var cmd = "rotateX(180deg) rotateY(0deg) rotateZ(180deg)"; // 4
+    var cmd = "rotateX(180deg) rotateY(0deg) rotateZ(270deg)"; // 4
+    var cmd = "rotateX(180deg) rotateY(90deg) rotateZ(0deg)"; // 3
+    var cmd = "rotateX(180deg) rotateY(90deg) rotateZ(90deg)"; // 1
+    var cmd = "rotateX(180deg) rotateY(90deg) rotateZ(180deg)"; // 5
+    var cmd = "rotateX(180deg) rotateY(90deg) rotateZ(270deg)"; // 6
+    var cmd = "rotateX(180deg) rotateY(180deg) rotateZ(0deg)"; // 2
+    var cmd = "rotateX(180deg) rotateY(180deg) rotateZ(90deg)"; // 2
+    var cmd = "rotateX(180deg) rotateY(180deg) rotateZ(180deg)"; // 2
+    var cmd = "rotateX(180deg) rotateY(180deg) rotateZ(270deg)"; // 2
+    var cmd = "rotateX(180deg) rotateY(270deg) rotateZ(0deg)"; // 5
+    var cmd = "rotateX(180deg) rotateY(270deg) rotateZ(90deg)"; // 6
+    var cmd = "rotateX(180deg) rotateY(270deg) rotateZ(180deg)"; // 3
+    var cmd = "rotateX(180deg) rotateY(270deg) rotateZ(270deg)"; // 1
+    
+    var cmd = "rotateX(270deg) rotateY(0deg) rotateZ(0deg)"; // 1
+    var cmd = "rotateX(270deg) rotateY(0deg) rotateZ(90deg)"; // 5
+    var cmd = "rotateX(270deg) rotateY(0deg) rotateZ(180deg)"; // 6
+    var cmd = "rotateX(270deg) rotateY(0deg) rotateZ(270deg)"; // 3
+    var cmd = "rotateX(270deg) rotateY(90deg) rotateZ(0deg)"; // 1
+    var cmd = "rotateX(270deg) rotateY(90deg) rotateZ(90deg)"; // 5
+    var cmd = "rotateX(270deg) rotateY(90deg) rotateZ(180deg)"; // 6
+    var cmd = "rotateX(270deg) rotateY(90deg) rotateZ(270deg)"; // 3
+    var cmd = "rotateX(270deg) rotateY(180deg) rotateZ(0deg)"; // 1
+    var cmd = "rotateX(270deg) rotateY(180deg) rotateZ(90deg)"; // 5
+    var cmd = "rotateX(270deg) rotateY(180deg) rotateZ(180deg)"; // 6
+    var cmd = "rotateX(270deg) rotateY(180deg) rotateZ(270deg)"; // 3
+    var cmd = "rotateX(270deg) rotateY(270deg) rotateZ(0deg)"; // 1
+    var cmd = "rotateX(270deg) rotateY(270deg) rotateZ(90deg)"; // 5
+    var cmd = "rotateX(270deg) rotateY(270deg) rotateZ(180deg)"; // 6
+    var cmd = "rotateX(270deg) rotateY(270deg) rotateZ(270deg)"; // 3
+    
+    */
+    
+    function lance() {
+      $("#dice").css("transition", duration + "ms");
+      var r = 1 + Math.ceil(Math.random()*5);
+      var i = Math.floor(Math.random() * (tab[r].length));
+      var cmd = "rotateX(" + tab[r][i][0] + "deg) rotateY(" + tab[r][i][1] + "deg) rotateZ(" + tab[r][i][2] + "deg)";
+      $("#dice").css("transform", cmd);
+      setTimeout("alert(" + r + ");", duration);
+      return r;
+    }
+    
+    </script>
+</body>
+</html>
